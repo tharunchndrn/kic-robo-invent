@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+/* ============================================
+   ROBO-INVENT 2026 — Global Design System
+   ============================================ */
+
+@theme {
+  --color-cyber-black: #0a0a0f;
+  --color-cyber-dark: #0d0d14;
+  --color-cyber-panel: #12121c;
+  --color-cyber-card: #161625;
+  --color-cyber-border: #1e1e32;
+  --color-cyber-muted: #2a2a40;
+  --color-neon-cyan: #00f0ff;
+  --color-neon-blue: #3b82f6;
+  --color-neon-amber: #f59e0b;
+  --color-neon-green: #22c55e;
+  --color-neon-red: #ef4444;
+  --color-neon-purple: #a855f7;
+  --color-text-primary: #e8e8f0;
+  --color-text-secondary: #8888a8;
+  --color-text-dim: #555570;
+  --font-orbitron: 'Orbitron', sans-serif;
+  --font-rajdhani: 'Chakra Petch', sans-serif;
+  --font-space: 'Chakra Petch', sans-serif;
+  --font-body: 'Chakra Petch', sans-serif;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-cyber-black);
+    color: var(--color-text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cyber-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-cyber-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neon-cyan);
+}
+
+/* ============================================
+   COMPONENTS
+   ============================================ */
+
+@layer components {
+  /* SECTION LABEL STYLES */
+  .section-label {
+    font-family: var(--font-orbitron), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--color-neon-cyan);
+    text-transform: uppercase;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    padding: 6px 20px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--color-neon-cyan);
+  }
+
+  .section-label::before {
+    top: -3px;
+    left: -3px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .section-label::after {
+    bottom: -3px;
+    right: -3px;
+    border-left: none;
+    border-top: none;
+  }
+
+  /* CYBER CARD STYLES */
+  .cyber-card {
+    background: linear-gradient(145deg, rgba(22, 22, 37, 0.8), rgba(18, 18, 28, 0.6));
+    border: 1px solid var(--color-cyber-border);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .cyber-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-neon-cyan), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .cyber-card:hover::before {
+    opacity: 1;
+  }
+
+  .cyber-card:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.08), inset 0 1px 0 rgba(0, 240, 255, 0.15);
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  /* GLOW BUTTON STYLES */
+  .glow-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .glow-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .glow-btn:hover::before {
+    transform: translateX(100%);
+  }
+
+  .glow-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1);
+  }
+
+  /* HUD CORNER ACCENTS */
+  .hud-corners {
+    position: relative;
+  }
+
+  .hud-corners::before,
+  .hud-corners::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+  }
+
+  .hud-corners::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid var(--color-neon-cyan);
+    border-left: 2px solid var(--color-neon-cyan);
+  }
+
+  .hud-corners::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid var(--color-neon-cyan);
+    border-right: 2px solid var(--color-neon-cyan);
+  }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+@layer utilities {
+  /* GRID BACKGROUND */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* GLOWING TEXT */
+  .glow-text {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.2);
+  }
+
+  /* CIRCUIT DIVIDER */
+  .circuit-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-cyber-border), rgba(0, 240, 255, 0.3), var(--color-cyber-border), transparent);
+    position: relative;
+  }
+
+  .circuit-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--color-neon-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-neon-cyan);
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.15), transparent);
+  animation: scan 8s linear infinite;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  @layer components {
+    .section-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      padding: 4px 14px;
+    }
+  }
+}
