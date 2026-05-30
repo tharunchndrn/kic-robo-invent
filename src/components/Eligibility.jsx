@@ -29,7 +29,7 @@ const requirements = [
   {
     icon: ShieldCheck,
     title: 'Supervision',
-    value: 'Teacher Required',
+    value: 'Staff Advisor',
     desc: 'A teacher or school coordinator must accompany each team',
     iconColor: 'text-neon-green',
     valueColor: 'text-neon-green',
@@ -58,7 +58,7 @@ export default function Eligibility() {
           transition={{ delay: 0.1 }}
           className="text-center font-orbitron text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mt-6 mb-16 tracking-wide"
         >
-          Clearance Requirements
+          Requirements
         </motion.h2>
 
         {/* Cards */}

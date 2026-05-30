@@ -92,7 +92,7 @@ export default function Bootcamp() {
           transition={{ delay: 0.2 }}
           className="text-center font-space text-text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-16"
         >
-          A 4-day intensive hands-on program at KIC Campus labs — designed for beginners, built for champions.
+          A 4-day intensive hands-on program at KIC Campus labs — designed for beginners, toward Competeting in the Championship.
         </motion.p>
 
         {/* Day Cards */}
