@@ -13,8 +13,8 @@ import Registration from './components/Registration'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import WhatsAppButton from './components/WhatsAppButton'
 import ParticleBackground from './components/ParticleBackground'
+import Lenis from 'lenis'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -23,6 +23,48 @@ function App() {
     const timer = setTimeout(() => setLoading(false), 2000)
     return () => clearTimeout(timer)
   }, [])
+
+  useEffect(() => {
+    if (loading) return
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+    })
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    // Handle standard anchor link smooth scrolling via Lenis
+    const handleAnchorClick = (e) => {
+      const target = e.target.closest('a[href^="#"]')
+      if (target) {
+        e.preventDefault()
+        const id = target.getAttribute('href')
+        if (id === '#') return
+        const element = document.querySelector(id)
+        if (element) {
+          lenis.scrollTo(element, { offset: -80 })
+        }
+      }
+    }
+
+    document.addEventListener('click', handleAnchorClick)
+
+    return () => {
+      lenis.destroy()
+      document.removeEventListener('click', handleAnchorClick)
+    }
+  }, [loading])
 
   if (loading) {
     return (
@@ -78,7 +120,6 @@ function App() {
         <Contact />
       </main>
       <Footer />
-      <WhatsAppButton />
     </div>
   )
 }

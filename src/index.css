@@ -32,7 +32,20 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: initial;
+  }
+
+  html.lenis,
+  html.lenis-smooth {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
   }
 
   body {
