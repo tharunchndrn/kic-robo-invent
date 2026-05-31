@@ -122,8 +122,9 @@ export default function Hero() {
           className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.a
-            href="#register"
-            onClick={(e) => handleScroll(e, '#register')}
+            href="https://forms.gle/veywtaSV25KpvPPZ6"
+            target="_blank"
+            rel="noopener noreferrer"
             animate={{ boxShadow: ['0 0 20px rgba(59,130,246,0.4)', '0 0 40px rgba(59,130,246,0.8)', '0 0 20px rgba(59,130,246,0.4)'] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             className="group px-8 py-3 bg-neon-blue hover:bg-blue-500 text-white font-orbitron text-xs sm:text-sm font-bold tracking-widest transition-colors duration-300 rounded-sm"

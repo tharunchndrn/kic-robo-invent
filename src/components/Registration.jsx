@@ -48,8 +48,9 @@ export default function Registration() {
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             {/* Registration Link */}
             <a
-              href="#"
-              /* TODO: Replace '#' with actual Google Forms registration link */
+              href="https://forms.gle/veywtaSV25KpvPPZ6"
+              target="_blank"
+              rel="noopener noreferrer"
               className="glow-btn flex items-center justify-center gap-3 px-6 py-4 bg-neon-cyan/10 border border-neon-cyan/40 text-neon-cyan font-orbitron text-xs tracking-widest hover:bg-neon-cyan/20 transition-all duration-300 rounded-sm"
             >
               <ExternalLink size={16} />

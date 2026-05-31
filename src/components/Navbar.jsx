@@ -131,8 +131,9 @@ export default function Navbar() {
             {/* CTA Button */}
             <div className="hidden lg:block">
               <a
-                href="#register"
-                onClick={(e) => handleLinkClick(e, '#register')}
+                href="https://forms.gle/veywtaSV25KpvPPZ6"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="glow-btn inline-flex items-center gap-2 px-6 py-2.5 bg-neon-cyan/10 border border-neon-cyan/40 text-neon-cyan font-orbitron text-xs tracking-wider hover:bg-neon-cyan/20 transition-all duration-300 rounded-sm"
               >
                 REGISTER NOW
@@ -193,8 +194,9 @@ export default function Navbar() {
               </div>
 
               <motion.a
-                href="#register"
-                onClick={(e) => handleLinkClick(e, '#register')}
+                href="https://forms.gle/veywtaSV25KpvPPZ6"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
