@@ -48,12 +48,6 @@ export default function Footer() {
     }
   }
 
-  const handleLinkClick = (e, href) => {
-    e.preventDefault()
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <footer className="relative border-t border-cyber-border bg-cyber-dark">
       {/* Back to top */}
@@ -115,7 +109,6 @@ export default function Footer() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
                     className="font-space text-sm text-text-secondary hover:text-neon-cyan transition-colors duration-300"
                   >
                     {link.name}
@@ -130,16 +123,28 @@ export default function Footer() {
             <h4 className="font-orbitron text-xs tracking-[0.2em] text-text-primary mb-6">
               CONNECT
             </h4>
-            <div className="space-y-3 mb-6">
-              <p className="font-space text-sm text-text-secondary">
-                Vimukthi@nibm.lk
-              </p>
-              <p className="font-space text-sm text-text-secondary">
-                Staff exco - Robotics & IOT club
-              </p>
-              <p className="font-space text-sm text-text-secondary">
-                NIBM KIC, Kandy, Sri Lanka.
-              </p>
+            <div className="space-y-4 mb-6">
+              <div>
+                <p className="font-orbitron text-[8px] tracking-[0.2em] text-text-dim uppercase font-extrabold mb-0.5">FACULTY ADVISOR</p>
+                <a href="mailto:vimukthi@nibm.lk" className="font-space text-sm text-text-secondary hover:text-neon-cyan transition-colors block">
+                  vimukthi@nibm.lk
+                </a>
+              </div>
+              <div>
+                <p className="font-orbitron text-[8px] tracking-[0.2em] text-text-dim uppercase font-extrabold mb-0.5">EVENT ORGANIZER</p>
+                <a href="mailto:tharunc39@gmail.com" className="font-space text-sm text-text-secondary hover:text-neon-cyan transition-colors block">
+                  tharunc39@gmail.com
+                </a>
+              </div>
+              <div>
+                <p className="font-orbitron text-[8px] tracking-[0.2em] text-text-dim uppercase font-extrabold mb-0.5">HEADQUARTERS</p>
+                <p className="font-space text-sm text-text-secondary">
+                  Kandy Innovation Centre
+                </p>
+                <p className="font-space text-xs text-text-dim mt-0.5">
+                  NIBM KIC, Kandy, Sri Lanka.
+                </p>
+              </div>
             </div>
 
             {/* Social Icons */}
