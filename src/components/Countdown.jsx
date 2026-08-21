@@ -25,7 +25,7 @@ export default function Countdown() {
   }, [])
 
   const timeCards = [
-    { label: 'DAYS', value: time.days },
+    { label: 'DAYAAAAAS', value: time.days },
     { label: 'HOURS', value: time.hours },
     { label: 'MINUTES', value: time.minutes },
     { label: 'SECONDS', value: time.seconds },
