@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronRight } from 'lucide-react'
+import { RoboInventLockup } from './BrandLogo'
 
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Challenge', href: '#challenge' },
+  { name: 'Entry', href: '#eligibility' },
   { name: 'Bootcamp', href: '#bootcamp' },
   { name: 'Timeline', href: '#timeline' },
-  { name: 'Eval & Awards', href: '#judging' },
+  { name: 'Scoring', href: '#judging' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
 ]
+
+const REGISTER_URL = 'https://forms.gle/veywtaSV25KpvPPZ6'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -18,42 +21,36 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  // Combined robust scroll listener for header transitions & active tab highlighting
   useEffect(() => {
     const handleScroll = () => {
-      // 1. Navbar scrolled style toggle
-      setScrolled(window.scrollY > 50)
+      setScrolled(window.scrollY > 40)
 
-      // 2. Active section detection
-      const sections = ['about', 'challenge', 'bootcamp', 'timeline', 'judging', 'awards', 'faq', 'contact']
-      const scanLine = window.innerHeight * 0.35 // 35% from the top of the viewport for natural focal tracking
-
-      let currentActive = ''
-      for (const id of sections) {
-        const el = document.getElementById(id)
-        if (el) {
-          const rect = el.getBoundingClientRect()
-          if (rect.top <= scanLine && rect.bottom > scanLine) {
-            currentActive = id === 'awards' ? 'judging' : id
-            break
-          }
-        }
+      // Nothing is "current" while the hero still fills the screen.
+      if (window.scrollY < window.innerHeight * 0.5) {
+        setActiveSection('')
+        return
       }
 
-      if (currentActive) {
-        setActiveSection(currentActive)
+      // Whichever section straddles the reading line owns the nav highlight.
+      const readingLine = window.innerHeight * 0.35
+      const ids = ['about', 'challenge', 'eligibility', 'bootcamp', 'timeline', 'judging', 'awards', 'faq', 'contact']
+
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        if (rect.top <= readingLine && rect.bottom > readingLine) {
+          setActiveSection(id === 'awards' ? 'judging' : id)
+          break
+        }
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    // Run immediately on mount with a microscopic delay to ensure DOM compilation
+    window.addEventListener('scroll', handleScroll, { passive: true })
     const timer = setTimeout(handleScroll, 100)
 
     return () => {
@@ -66,146 +63,127 @@ export default function Navbar() {
     e.preventDefault()
     setMobileOpen(false)
     const el = document.querySelector(href)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? 'bg-cyber-black/95 backdrop-blur-xl border-b border-cyber-border/75 shadow-[0_4px_30px_rgba(0,0,0,0.6),0_1px_15px_rgba(0,240,255,0.06)]'
-          : 'bg-transparent'
-          }`}
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-5 pt-3 sm:pt-4"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <a href="#" className="flex items-center gap-3 group" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
-              <div className="relative">
-                <div className="w-9 h-9 border-2 border-neon-cyan rounded-sm flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] group-hover:border-neon-cyan transition-all duration-300">
-                  <span className="font-orbitron text-neon-cyan text-xs font-bold">RI</span>
-                </div>
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-neon-cyan rounded-full animate-pulse" />
-              </div>
-              <div className="hidden sm:block">
-                <p className="font-orbitron text-sm font-bold text-text-primary group-hover:text-neon-cyan transition-colors duration-300 tracking-wider">RI 2026</p>
-                <p className="text-[10px] tracking-[0.2em] text-text-dim uppercase">Inter-School Robotics Championship</p>
-              </div>
+        <div
+          className={`mx-auto max-w-[1800px] flex items-center justify-between gap-6 rounded-full pl-5 pr-2 sm:pl-7 sm:pr-2.5 h-14 sm:h-16 transition-all duration-500 ${
+            scrolled
+              ? 'bg-card/85 backdrop-blur-xl border border-rule shadow-[0_10px_40px_-24px_rgba(0,0,0,0.7)]'
+              : 'bg-transparent border border-transparent'
+          }`}
+        >
+          {/* Wordmark */}
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+            className="flex items-center shrink-0 group"
+            aria-label="Robo-Invent 2026, back to top"
+          >
+            <RoboInventLockup className="h-9 sm:h-11 w-auto opacity-95 group-hover:opacity-100 transition-opacity duration-300" />
+          </a>
+
+          {/* Desktop links */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 font-mono text-[11px] tracking-[0.08em]">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                data-active={activeSection === link.href.slice(1)}
+                className="ulink"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <a
+              href={REGISTER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-solid h-10 sm:h-11 px-5 sm:px-6 text-[10px] sm:text-[11px]"
+            >
+              Register
+              <span aria-hidden className="text-[13px] leading-none -mt-px">&#8599;</span>
             </a>
 
-            {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-1 xl:gap-2">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href.slice(1)
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className={`relative px-2 xl:px-3 py-1 font-space text-[13px] tracking-wide transition-all duration-300 group flex items-center ${isActive ? 'text-neon-cyan glow-text font-bold' : 'text-text-secondary hover:text-white'
-                      }`}
-                  >
-                    {/* Futuristic Left Bracket Indicator */}
-                    <span className={`font-orbitron text-[9px] text-neon-cyan select-none transition-all duration-300 mr-0.5 ${isActive ? 'opacity-100 scale-100' : 'opacity-0 -translate-x-1 scale-90 group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100'
-                      }`}>
-                      [
-                    </span>
-
-                    {link.name}
-
-                    {/* Futuristic Right Bracket Indicator */}
-                    <span className={`font-orbitron text-[9px] text-neon-cyan select-none transition-all duration-300 ml-0.5 ${isActive ? 'opacity-100 scale-100' : 'opacity-0 translate-x-1 scale-90 group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100'
-                      }`}>
-                      ]
-                    </span>
-                  </a>
-                )
-              })}
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden lg:block">
-              <a
-                href="https://forms.gle/veywtaSV25KpvPPZ6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="glow-btn inline-flex items-center gap-2 px-6 py-2.5 bg-neon-cyan/10 border border-neon-cyan/40 text-neon-cyan font-orbitron text-xs tracking-wider hover:bg-neon-cyan/20 transition-all duration-300 rounded-sm"
-              >
-                REGISTER NOW
-                <ChevronRight size={14} />
-              </a>
-            </div>
-
-            {/* Mobile Toggle */}
+            {/* Mobile toggle — three rules that fold into a cross */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 text-text-secondary hover:text-neon-cyan transition-colors"
-              aria-label="Toggle menu"
+              className="lg:hidden w-11 h-11 rounded-full border border-rule flex flex-col items-start justify-center pl-3 gap-[5px] bg-card/60"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
             >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              <span className={`block h-[1.5px] w-4 bg-ink transition-all duration-300 ${mobileOpen ? 'translate-y-[3.25px] rotate-45' : ''}`} />
+              <span className={`block h-[1.5px] bg-ink transition-all duration-300 ${mobileOpen ? 'w-4 -translate-y-[3.25px] -rotate-45' : 'w-2.5'}`} />
             </button>
           </div>
         </div>
-      </motion.nav>
+      </motion.header>
 
-      {/* Mobile Menu */}
+      {/* Mobile sheet */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="absolute inset-0 bg-cyber-black/95 backdrop-blur-xl" />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-cyber-dark border-l border-cyber-border p-8 pt-24"
-            >
-              <div className="flex flex-col gap-1">
-                {navLinks.map((link, i) => {
-                  const isActive = activeSection === link.href.slice(1)
-                  return (
-                    <motion.a
-                      key={link.name}
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link.href)}
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.08 }}
-                      className={`flex items-center gap-3 px-4 py-3.5 font-space text-lg border-b border-cyber-border/50 transition-colors ${isActive ? 'text-neon-cyan font-bold pl-6' : 'text-text-secondary hover:text-white'
-                        }`}
-                    >
-                      <span className={`text-[10px] font-orbitron ${isActive ? 'text-neon-cyan' : 'text-text-dim'}`}>
-                        0{i + 1}
-                      </span>
-                      {link.name}
-                    </motion.a>
-                  )
-                })}
-              </div>
+            <div className="absolute inset-0 bg-paper/95 backdrop-blur-xl" onClick={() => setMobileOpen(false)} />
 
-              <motion.a
-                href="https://forms.gle/veywtaSV25KpvPPZ6"
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="mt-8 glow-btn flex items-center justify-center gap-2 px-6 py-3 bg-neon-cyan/10 border border-neon-cyan/40 text-neon-cyan font-orbitron text-xs tracking-wider rounded-sm"
-              >
-                REGISTER NOW
-                <ChevronRight size={14} />
-              </motion.a>
-            </motion.div>
+            <motion.nav
+              initial={{ y: -24, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -16, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="relative pt-28 px-6 pb-10 h-full flex flex-col"
+            >
+              <div className="hairline mb-1" />
+              {navLinks.map((link, i) => {
+                const isActive = activeSection === link.href.slice(1)
+                return (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 + i * 0.04 }}
+                    className={`flex items-baseline justify-between py-3.5 border-b border-rule-soft ${isActive ? 'text-flare' : 'text-ink'}`}
+                  >
+                    <span className="display text-[30px] sm:text-4xl">{link.name}</span>
+                    <span className="eyebrow-bare text-ink-faint tnum">{String(i + 1).padStart(2, '0')}</span>
+                  </motion.a>
+                )
+              })}
+
+              <div className="mt-auto pt-8">
+                <a
+                  href={REGISTER_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-flare w-full h-14"
+                >
+                  Register your school
+                  <span aria-hidden className="text-base leading-none -mt-px">&#8599;</span>
+                </a>
+                <p className="mt-4 font-mono text-[10px] tracking-[0.18em] uppercase text-ink-mute text-center">
+                  Kandy Innovation Centre &middot; NIBM
+                </p>
+              </div>
+            </motion.nav>
           </motion.div>
         )}
       </AnimatePresence>

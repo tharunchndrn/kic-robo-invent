@@ -1,163 +1,122 @@
 import { motion } from 'framer-motion'
-import { Cpu, Radio, Code, Rocket, MapPin, Calendar } from 'lucide-react'
 
 const days = [
   {
     day: '01',
-    title: 'Foundation & Hardware',
-    icon: Cpu,
-    topics: [
-      'Introduction to Arduino',
-      'Electronic components',
-      'Circuit wiring basics',
-      'Sensor fundamentals',
-    ],
-    iconColor: 'text-neon-cyan',
-    dayColor: 'text-neon-cyan',
-    dotColor: 'bg-neon-cyan',
+    title: 'Foundation & hardware',
+    topics: ['Introduction to Arduino', 'Electronic components', 'Circuit wiring basics', 'Sensor fundamentals'],
   },
   {
     day: '02',
-    title: 'Sensors & Logic',
-    icon: Radio,
-    topics: [
-      'IR and ultrasonic sensors',
-      'Motor control',
-      'Logic design patterns',
-      'Signal processing',
-    ],
-    iconColor: 'text-neon-blue',
-    dayColor: 'text-neon-blue',
-    dotColor: 'bg-neon-blue',
+    title: 'Sensors & logic',
+    topics: ['IR and ultrasonic sensors', 'Motor control', 'Logic design patterns', 'Signal processing'],
   },
   {
     day: '03',
-    title: 'Programming & Control',
-    icon: Code,
-    topics: [
-      'Arduino IDE basics',
-      'Autonomous control loops',
-      'Line tracking algorithms',
-      'Traffic signal response',
-    ],
-    iconColor: 'text-neon-amber',
-    dayColor: 'text-neon-amber',
-    dotColor: 'bg-neon-amber',
+    title: 'Programming & control',
+    topics: ['Arduino IDE basics', 'Autonomous control loops', 'Line tracking algorithms', 'Traffic signal response'],
   },
   {
     day: '04',
-    title: 'Integration & Testing',
-    icon: Rocket,
-    topics: [
-      'Full robot assembly',
-      'Obstacle avoidance tuning',
-      'Challenge simulation run',
-      'Team strategy and presentation',
-    ],
-    iconColor: 'text-neon-green',
-    dayColor: 'text-neon-green',
-    dotColor: 'bg-neon-green',
+    title: 'Integration & testing',
+    topics: ['Full robot assembly', 'Obstacle avoidance tuning', 'Challenge simulation run', 'Team strategy and pitch'],
   },
 ]
 
 export default function Bootcamp() {
   return (
-    <section id="bootcamp" className="py-20 md:py-28 px-4 relative">
-      <div className="max-w-6xl mx-auto">
-        {/* Label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-4"
-        >
-          <span className="section-label">Mandatory Training Module</span>
-        </motion.div>
+    <section id="bootcamp" className="relative px-5 sm:px-8 lg:px-12 xl:px-16 py-24 lg:py-32 overflow-hidden">
+      {/* A little warmth bleeding in from the right margin */}
+      <div className="absolute inset-y-0 right-0 w-[45%] bleed-warm-soft pointer-events-none" />
 
-        {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-center font-orbitron text-3xl md:text-4xl lg:text-5xl font-bold text-white glow-text mt-6 mb-4 tracking-wide"
-        >
-          Robotics Bootcamp
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="text-center font-space text-text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-16"
-        >
-          A 4-day intensive hands-on program at KIC Campus labs — designed for beginners, toward Competeting in the Championship.
-        </motion.p>
-
-        {/* Day Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {days.map((day, i) => (
-            <motion.div
-              key={day.day}
-              initial={{ opacity: 0, y: 40 }}
+      <div className="relative mx-auto max-w-[1800px]">
+        <div className="grid lg:grid-cols-12 gap-x-10 gap-y-8 items-end">
+          <div className="lg:col-span-7">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.6 }}
-              className="cyber-card p-6 rounded-sm group"
+              viewport={{ once: true, margin: '-80px' }}
+              className="eyebrow"
             >
-              {/* Day number */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-orbitron text-[10px] tracking-[0.2em] text-text-dim">
-                  DAY
-                </span>
-                <span className={`font-orbitron text-2xl font-bold ${day.dayColor} glow-text`}>
+              04 &mdash; Training
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ delay: 0.08 }}
+              className="display mt-6 text-[11vw] sm:text-[8vw] lg:text-[4.4vw] max-w-[13ch]"
+            >
+              Four days that build an engineer
+            </motion.h2>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ delay: 0.16 }}
+            className="lg:col-span-5 max-w-[46ch] lg:pb-3 text-[15px] sm:text-base leading-relaxed text-ink-soft"
+          >
+            Attendance is mandatory, and it is the reason no experience is needed. Every team
+            arrives at the KIC labs knowing nothing and leaves with a robot that drives itself.
+          </motion.p>
+        </div>
+
+        {/* Day board */}
+        <div className="mt-14 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 lg:gap-y-0">
+          {days.map((day, i) => (
+            <motion.article
+              key={day.day}
+              initial={{ opacity: 0, y: 26 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative border-t border-ink pt-7 pb-2 lg:px-7 lg:first:pl-0 lg:last:pr-0 lg:border-r lg:border-r-rule lg:last:border-r-0"
+            >
+              <div className="flex items-baseline justify-between gap-4">
+                <span
+                  className="font-display font-black text-[86px] lg:text-[104px] leading-[0.75] tracking-[-0.07em] text-transparent transition-colors duration-500 group-hover:text-flare"
+                  style={{ WebkitTextStroke: '1.5px #e9eff5' }}
+                >
                   {day.day}
                 </span>
+                <span className="eyebrow-bare text-ink-faint">Day</span>
               </div>
 
-              {/* Icon */}
-              <div className={`p-3 rounded-sm bg-cyber-dark border border-cyber-border ${day.iconColor} inline-flex mb-4 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.1)] transition-shadow duration-300`}>
-                <day.icon size={22} />
-              </div>
-
-              {/* Title */}
-              <h3 className="font-orbitron text-sm font-semibold text-text-primary mb-4">
+              <h3 className="mt-8 font-display font-semibold text-lg lg:text-xl tracking-[-0.03em] max-w-[16ch]">
                 {day.title}
               </h3>
 
-              {/* Topics */}
-              <ul className="space-y-2">
+              <ul className="mt-5 space-y-2.5">
                 {day.topics.map((topic) => (
-                  <li key={topic} className="flex items-start gap-2">
-                    <span className={`w-1 h-1 mt-1.5 rounded-full ${day.dotColor} flex-shrink-0`} />
-                    <span className="font-space text-xs text-text-secondary leading-relaxed">
-                      {topic}
-                    </span>
+                  <li key={topic} className="flex items-start gap-3 text-[13.5px] leading-snug text-ink-soft">
+                    <span className="mt-[7px] w-2.5 h-px bg-ink-faint shrink-0" />
+                    {topic}
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
-        {/* Location note */}
+        {/* Logistics */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-60px' }}
+          className="mt-16 lg:mt-20 border-t border-rule pt-7 grid sm:grid-cols-3 gap-8"
         >
-          <div className="flex items-center gap-2 text-text-secondary">
-            <MapPin size={14} className="text-neon-cyan" />
-            <span className="font-space text-sm">NIBM KIC Campus</span>
-          </div>
-          <div className="hidden sm:block w-[1px] h-4 bg-cyber-border" />
-          <div className="flex items-center gap-2 text-text-secondary">
-            <Calendar size={14} className="text-neon-amber" />
-            <span className="font-space text-sm">July to August 2026</span>
-          </div>
+          {[
+            { k: 'Venue', v: 'NIBM KIC Campus labs' },
+            { k: 'Window', v: 'July to August 2026' },
+            { k: 'Cost to schools', v: 'None — fully sponsored' },
+          ].map((item) => (
+            <div key={item.k}>
+              <p className="eyebrow-bare text-ink-faint">{item.k}</p>
+              <p className="mt-2.5 font-display font-semibold text-base sm:text-lg tracking-[-0.02em]">{item.v}</p>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

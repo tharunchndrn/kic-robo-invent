@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import Lenis from 'lenis'
+
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Countdown from './components/Countdown'
 import About from './components/About'
 import Challenge from './components/Challenge'
 import Eligibility from './components/Eligibility'
@@ -13,115 +15,135 @@ import Registration from './components/Registration'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import ParticleBackground from './components/ParticleBackground'
-import Lenis from 'lenis'
+import WhatsAppButton from './components/WhatsAppButton'
 
-function App() {
-  const [loading, setLoading] = useState(true)
+const BOOT_MS = 1500
+
+function Boot({ done }) {
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000)
-    return () => clearTimeout(timer)
+    const start = performance.now()
+    let raf
+
+    const tick = (t) => {
+      const p = Math.min((t - start) / BOOT_MS, 1)
+      // Ease out so the number decelerates into 100 rather than ticking flat.
+      setCount(Math.round((1 - Math.pow(1 - p, 3)) * 100))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
   }, [])
 
+  return (
+    <motion.div
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 z-[999] bg-paper flex flex-col justify-between px-5 sm:px-8 lg:px-12 py-6 sm:py-8"
+      aria-hidden={done}
+    >
+      <div className="flex items-start justify-between">
+        <span className="font-display font-extrabold text-[15px] sm:text-[17px] tracking-[-0.05em] uppercase">
+          Robo&#8209;Invent
+        </span>
+        <span className="eyebrow-bare text-ink-mute">Kandy &middot; 2026</span>
+      </div>
+
+      <div className="mt-auto flex items-end justify-between gap-6">
+        <p className="eyebrow-bare text-ink-mute max-w-[22ch] leading-relaxed">
+          Inter-school robotics championship
+        </p>
+        <span className="font-display font-semibold tnum text-[18vw] sm:text-[13vw] lg:text-[9vw] leading-[0.78] tracking-[-0.06em]">
+          {String(count).padStart(3, '0')}
+        </span>
+      </div>
+
+      <div className="mt-6 h-px w-full bg-rule relative overflow-hidden">
+        <div
+          className="absolute inset-y-0 left-0 bg-flare transition-[width] duration-100 ease-linear"
+          style={{ width: `${count}%` }}
+        />
+      </div>
+    </motion.div>
+  )
+}
+
+// Readers who ask for reduced motion get the page, not the overture.
+const prefersReducedMotion =
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+export default function App() {
+  const [booting, setBooting] = useState(!prefersReducedMotion)
+
   useEffect(() => {
-    if (loading) return
+    if (!booting) return
+    const timer = setTimeout(() => setBooting(false), BOOT_MS + 150)
+    return () => clearTimeout(timer)
+  }, [booting])
+
+  useEffect(() => {
+    if (booting) return
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
     })
 
-    function raf(time) {
+    let raf
+    const loop = (time) => {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      raf = requestAnimationFrame(loop)
     }
+    raf = requestAnimationFrame(loop)
 
-    requestAnimationFrame(raf)
-
-    // Handle standard anchor link smooth scrolling via Lenis
+    // Route every in-page anchor through Lenis so the easing stays consistent.
     const handleAnchorClick = (e) => {
-      const target = e.target.closest('a[href^="#"]')
-      if (target) {
-        e.preventDefault()
-        const id = target.getAttribute('href')
-        if (id === '#') return
-        const element = document.querySelector(id)
-        if (element) {
-          lenis.scrollTo(element, { offset: -80 })
-        }
-      }
+      const link = e.target.closest('a[href^="#"]')
+      if (!link) return
+      const id = link.getAttribute('href')
+      if (id === '#') return
+      const el = document.querySelector(id)
+      if (!el) return
+      e.preventDefault()
+      lenis.scrollTo(el, { offset: -88 })
     }
 
     document.addEventListener('click', handleAnchorClick)
 
     return () => {
+      cancelAnimationFrame(raf)
       lenis.destroy()
       document.removeEventListener('click', handleAnchorClick)
     }
-  }, [loading])
-
-  if (loading) {
-    return (
-      <div className="fixed inset-0 bg-cyber-black flex items-center justify-center z-[9999]">
-        <div className="text-center">
-          <div className="relative">
-            <div className="w-20 h-20 border-2 border-cyber-border rounded-full animate-spin">
-              <div className="absolute top-0 left-1/2 w-2 h-2 -translate-x-1/2 -translate-y-1 bg-neon-cyan rounded-full shadow-[0_0_10px_var(--color-neon-cyan)]" />
-            </div>
-          </div>
-          <p className="mt-6 font-orbitron text-xs tracking-[0.3em] text-neon-cyan animate-pulse">
-            INITIALIZING SYSTEM
-          </p>
-          <div className="mt-3 w-48 h-[2px] bg-cyber-border mx-auto overflow-hidden rounded">
-            <div className="h-full bg-gradient-to-r from-transparent via-neon-cyan to-transparent animate-[scan_1.5s_ease-in-out_infinite]" />
-          </div>
-        </div>
-      </div>
-    )
-  }
+  }, [booting])
 
   return (
-    <div className="relative min-h-screen bg-cyber-black">
-      {/* Scanning line effect */}
-      <div className="scan-line" />
-      
-      {/* Particle background */}
-      <ParticleBackground />
+    <div className="relative min-h-screen bg-paper grain">
+      <AnimatePresence>{booting && <Boot key="boot" done={!booting} />}</AnimatePresence>
 
-      {/* Main content */}
       <Navbar />
-      <main className="flex flex-col w-full relative z-10 overflow-hidden">
+
+      <main className="relative">
         <Hero />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <About />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <Challenge />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <Eligibility />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <Bootcamp />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <Timeline />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <Judging />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <Awards />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <Registration />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <FAQ />
-        <div className="circuit-divider max-w-4xl mx-auto" />
         <Contact />
       </main>
+
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }
-
-export default App

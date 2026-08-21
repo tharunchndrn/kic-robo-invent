@@ -1,114 +1,132 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, HelpCircle } from 'lucide-react'
 
 const faqs = [
   {
     q: 'Who is eligible to participate?',
-    a: 'The competition is open to all O/L level students from schools in the Kandy District. Each school can register up to 2 teams, with a maximum of 3 students per team.',
+    a: 'The competition is open to all O/L level students from schools in the Kandy District. Each school can register up to two teams, with a maximum of three students per team.',
   },
   {
     q: 'How many students can be in one team?',
-    a: 'Each team can consist of a maximum of 3 O/L students. A teacher or school coordinator must also accompany the team as a supervisor.',
+    a: 'Up to three O/L students. A teacher or school coordinator must also accompany the team as a supervisor on training and competition days.',
   },
   {
-    q: 'Is the Robotics Bootcamp mandatory?',
-    a: 'Yes, the 4-day Robotics Bootcamp is mandatory for all participating teams. It will be conducted at the KIC NIBM Campus Labs during July to August 2026.',
+    q: 'Is the robotics bootcamp mandatory?',
+    a: 'Yes. The four-day bootcamp is mandatory for every participating team and runs at the KIC NIBM Campus labs between July and August 2026.',
   },
   {
     q: 'What will students learn at the bootcamp?',
-    a: 'Students will learn Arduino programming, sensor integration (IR and ultrasonic), motor control, circuit wiring, autonomous navigation algorithms, line tracking, obstacle avoidance, and team presentation skills.',
+    a: 'Arduino programming, sensor integration with IR and ultrasonic modules, motor control, circuit wiring, autonomous navigation algorithms, line tracking, obstacle avoidance, and how to present an engineering decision.',
   },
   {
-    q: 'What is the main challenge?',
-    a: 'Teams must design, build, and program an autonomous robotic vehicle capable of navigating a Smart City Obstacle Course — including precision line tracking, traffic signal response, and obstacle avoidance.',
+    q: 'What exactly is the main challenge?',
+    a: 'Teams design, build and program an autonomous vehicle that runs a Smart City obstacle course — precision line tracking, traffic signal response, and obstacle avoidance, all without remote control.',
   },
   {
     q: 'Does a school need prior robotics experience?',
-    a: 'No prior robotics experience is required. The mandatory bootcamp is designed for beginners and will cover everything from the basics of electronics to advanced autonomous control.',
+    a: 'None at all. The bootcamp is built for absolute beginners and starts from basic electronics before moving to autonomous control.',
   },
   {
     q: 'What equipment do students need to bring?',
-    a: 'All equipment and components required for the bootcamp will be provided at the KIC NIBM Campus Labs. Students only need to bring their enthusiasm and a notebook for taking notes.',
+    a: 'Everything required for the bootcamp is provided at the KIC NIBM Campus labs. Students only need a notebook and their enthusiasm.',
   },
 ]
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(null)
-
-  const toggle = (i) => {
-    setOpenIndex(openIndex === i ? null : i)
-  }
+  const [open, setOpen] = useState(0)
 
   return (
-    <section id="faq" className="py-20 md:py-28 px-4 relative">
-      <div className="max-w-3xl mx-auto">
-        {/* Label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-4"
-        >
-          <span className="section-label">Intel Database</span>
-        </motion.div>
-
-        {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-center font-orbitron text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mt-6 mb-16 tracking-wide"
-        >
-          Frequently Asked Questions
-        </motion.h2>
-
-        {/* FAQ Accordion */}
-        <div className="space-y-3">
-          {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="cyber-card rounded-sm overflow-hidden"
-            >
-              <button
-                onClick={() => toggle(i)}
-                className="w-full flex items-center gap-4 p-5 text-left hover:bg-cyber-card/50 transition-colors duration-300"
+    <section id="faq" className="relative bg-paper-deep border-y border-rule">
+      <div className="px-5 sm:px-8 lg:px-12 xl:px-16 py-24 lg:py-32">
+        <div className="mx-auto max-w-[1800px] grid lg:grid-cols-12 gap-x-12 gap-y-12">
+          {/* Sticky header */}
+          <div className="lg:col-span-4">
+            <div className="lg:sticky lg:top-28">
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                className="eyebrow"
               >
-                <HelpCircle size={16} className={`flex-shrink-0 transition-colors duration-300 ${openIndex === i ? 'text-neon-cyan' : 'text-text-dim'}`} />
-                <span className={`flex-1 font-space text-sm md:text-base transition-colors duration-300 ${openIndex === i ? 'text-neon-cyan' : 'text-text-primary'}`}>
-                  {faq.q}
-                </span>
-                <ChevronDown
-                  size={16}
-                  className={`flex-shrink-0 text-text-dim transition-transform duration-300 ${openIndex === i ? 'rotate-180 text-neon-cyan' : ''}`}
-                />
-              </button>
+                09 &mdash; Questions
+              </motion.p>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ delay: 0.08 }}
+                className="display mt-6 text-[11vw] sm:text-[8vw] lg:text-[3.6vw] max-w-[10ch]"
+              >
+                Before you ask
+              </motion.h2>
+              <p className="mt-7 max-w-[34ch] text-[15px] leading-relaxed text-ink-soft">
+                Still stuck? The coordinators below answer on WhatsApp faster than by email.
+              </p>
+            </div>
+          </div>
 
-              <AnimatePresence>
-                {openIndex === i && (
+          {/* Accordion */}
+          <div className="lg:col-span-7 lg:col-start-6">
+            <div className="border-t border-ink">
+              {faqs.map((faq, i) => {
+                const isOpen = open === i
+                return (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
+                    key={faq.q}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ delay: i * 0.04 }}
+                    className="border-b border-rule"
                   >
-                    <div className="px-5 pb-5 pl-10 md:pl-[52px]">
-                      <div className="h-[1px] bg-cyber-border mb-4" />
-                      <p className="font-space text-sm text-text-secondary leading-relaxed">
-                        {faq.a}
-                      </p>
-                    </div>
+                    <button
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                      className="w-full text-left flex items-start gap-5 sm:gap-8 py-6 sm:py-7 group"
+                    >
+                      <span className={`eyebrow-bare tnum pt-1.5 shrink-0 transition-colors duration-300 ${isOpen ? 'text-flare' : 'text-ink-faint'}`}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+
+                      <span
+                        className={`flex-1 font-display font-semibold text-[19px] sm:text-[23px] leading-snug tracking-[-0.03em] transition-colors duration-300 ${
+                          isOpen ? 'text-flare' : 'text-ink group-hover:text-ink-soft'
+                        }`}
+                      >
+                        {faq.q}
+                      </span>
+
+                      {/* Plus that becomes a minus */}
+                      <span className="relative shrink-0 w-4 h-4 mt-2">
+                        <span className={`absolute inset-x-0 top-1/2 h-px -translate-y-1/2 transition-colors duration-300 ${isOpen ? 'bg-flare' : 'bg-ink'}`} />
+                        <span
+                          className={`absolute inset-y-0 left-1/2 w-px -translate-x-1/2 transition-all duration-300 ${
+                            isOpen ? 'bg-flare rotate-90 opacity-0' : 'bg-ink'
+                          }`}
+                        />
+                      </span>
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <p className="pb-7 pl-[52px] sm:pl-[68px] pr-8 max-w-[58ch] text-[14.5px] sm:text-[15px] leading-relaxed text-ink-soft">
+                            {faq.a}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>

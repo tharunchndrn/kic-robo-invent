@@ -1,79 +1,96 @@
 import { motion } from 'framer-motion'
-import { School, Users, GraduationCap, Calendar } from 'lucide-react'
 
-const stats = [
-  { icon: School, value: '30+', label: 'Schools', colorClass: 'text-neon-cyan' },
-  { icon: Users, value: '40+', label: 'Teams', colorClass: 'text-neon-blue' },
-  { icon: GraduationCap, value: '120+', label: 'Students', colorClass: 'text-neon-amber' },
-  { icon: Calendar, value: '4 Day', label: 'Bootcamp', colorClass: 'text-neon-green' },
-]
+/*
+ * A genuinely different structure, not a re-skinned ledger: the three
+ * capacity figures live inside the paragraph as prose, not as their own
+ * headline numerals — because they're a plan, not a result. The one number
+ * that's actually true (the bootcamp length) gets the sole large numeral on
+ * the page, so the hierarchy itself tells you which figure to trust.
+ */
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-28 px-4 relative">
-      <div className="max-w-6xl mx-auto">
-        {/* Label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-4"
-        >
-          <span className="section-label">Initiation Protocol</span>
-        </motion.div>
+    <section id="about" className="relative px-5 sm:px-8 lg:px-12 xl:px-16 py-24 lg:py-32">
+      <div className="mx-auto max-w-[1800px] grid lg:grid-cols-12 gap-x-10 gap-y-16 items-center">
+        {/* Statement */}
+        <div className="lg:col-span-7">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            className="eyebrow"
+          >
+            01 &mdash; About
+          </motion.p>
 
-        {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-center font-orbitron text-3xl md:text-4xl lg:text-5xl font-bold text-white glow-text mt-6 mb-6 tracking-wide"
-        >
-          Engineering the Next Generation
-        </motion.h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ delay: 0.08 }}
+            className="display mt-6 text-[10vw] sm:text-[7vw] lg:text-[3.6vw] max-w-[13ch]"
+          >
+            Engineering the next generation
+          </motion.h2>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="text-center font-space text-text-secondary text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-16"
-        >
-          Robo-Invent 2026 is an inter-school robotics championship designed to promote STEM education,
-          automation, logic design, and innovation among O/L students in the Kandy District.
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ delay: 0.16 }}
+            className="mt-8 max-w-[58ch] text-[19px] sm:text-[22px] lg:text-[25px] leading-snug tracking-[-0.01em] text-ink"
+          >
+            This is Robo-Invent&apos;s first edition, so we&apos;re building capacity, not
+            reporting a headcount &mdash; room for up to{' '}
+            <span className="text-ink-soft">30 schools</span>,{' '}
+            <span className="text-ink-soft">40 teams</span> and{' '}
+            <span className="text-ink-soft">120 students</span> across the Kandy District.
+            Nobody&apos;s registered yet.
+          </motion.p>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="cyber-card p-6 md:p-8 rounded-sm text-center group"
-            >
-              <div className={`inline-flex p-3 rounded-sm bg-cyber-dark border border-cyber-border mb-4 ${stat.colorClass} group-hover:shadow-lg transition-shadow duration-300`}>
-                <stat.icon size={24} />
-              </div>
-              <motion.p
-                initial={{ scale: 0.5 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 + 0.3, type: 'spring' }}
-                className={`font-orbitron text-3xl md:text-4xl font-bold ${stat.colorClass} glow-text`}
-              >
-                {stat.value}
-              </motion.p>
-              <p className="mt-2 font-orbitron text-[10px] tracking-[0.2em] text-text-dim uppercase">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ delay: 0.24 }}
+            className="mt-7 max-w-[46ch] space-y-4 text-[15px] leading-relaxed text-ink-mute"
+          >
+            <p>
+              It puts STEM education into the hands of Ordinary Level students &mdash;
+              automation, logic design and hardware, taught the way engineers actually learn
+              them: by building something that has to work on the day.
+            </p>
+            <p>
+              It is run by the Kandy Innovation Centre at NIBM, and it is free to enter. No
+              school needs a robotics club, a lab, or any prior experience to take part.
+            </p>
+          </motion.div>
         </div>
+
+        {/* The one number that's actually real */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ delay: 0.3, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 lg:border-l lg:border-rule lg:pl-14"
+        >
+          <span className="inline-flex items-center gap-2 rounded-full border border-moss/40 pl-2.5 pr-3 py-1 font-mono text-[9px] tracking-[0.16em] uppercase text-moss">
+            <span className="w-1.5 h-1.5 rounded-full bg-moss" />
+            The one confirmed date
+          </span>
+
+          <p className="mt-6 font-display font-semibold tnum text-[30vw] sm:text-[19vw] lg:text-[9.5vw] leading-[0.75] tracking-[-0.06em] text-ink">
+            04
+          </p>
+
+          <p className="mt-2 font-display font-semibold text-2xl sm:text-3xl tracking-[-0.03em]">
+            Days of bootcamp
+          </p>
+          <p className="mt-2 font-mono text-[11px] tracking-[0.14em] uppercase text-ink-mute">
+            Hands-on, at KIC labs &middot; July to August 2026
+          </p>
+        </motion.div>
       </div>
     </section>
   )

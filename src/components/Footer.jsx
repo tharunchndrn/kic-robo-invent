@@ -1,35 +1,46 @@
-import { motion } from 'framer-motion'
-import { Globe, Camera, Video, Briefcase, ArrowUp, Link2, Share2 } from 'lucide-react'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+import kic from '../assets/brand/kic.png'
+import nibm from '../assets/brand/nibm.png'
+import ieee from '../assets/brand/ieee-sb.png'
+
+/* White variants, pre-cropped — heights are tuned per mark so their optical
+   weight matches rather than their raw pixel height. */
+const partners = [
+  { src: nibm, alt: 'NIBM — The City University', height: 'h-7 sm:h-8' },
+  { src: kic, alt: 'Kandy Innovation Centre', height: 'h-10 sm:h-12' },
+  { src: ieee, alt: 'IEEE Student Branch', height: 'h-6 sm:h-7' },
+]
 
 const quickLinks = [
   { name: 'About', href: '#about' },
   { name: 'Challenge', href: '#challenge' },
+  { name: 'Entry', href: '#eligibility' },
   { name: 'Bootcamp', href: '#bootcamp' },
   { name: 'Timeline', href: '#timeline' },
+  { name: 'Scoring', href: '#judging' },
+  { name: 'Awards', href: '#awards' },
   { name: 'Register', href: '#register' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
 ]
 
-const socials = [
-  { icon: Globe, href: '#', label: 'Facebook' },
-  { icon: Camera, href: '#', label: 'Instagram' },
-  { icon: Video, href: '#', label: 'YouTube' },
-  { icon: Briefcase, href: '#', label: 'LinkedIn' },
+const contacts = [
+  { role: 'Faculty advisor', name: 'Mr. Vimukthi Pathirana', email: 'vimukthi@nibm.lk' },
+  { role: 'Event organiser', name: 'Tharun Chandran', email: 'tharunc39@gmail.com' },
 ]
 
 export default function Footer() {
   const [copied, setCopied] = useState(false)
 
-  const handleScrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard denied — nothing useful to do here.
+    }
   }
 
   const handleShare = async () => {
@@ -40,142 +51,133 @@ export default function Footer() {
           text: 'Kandy Schools Robotics Championship for O/L Students',
           url: window.location.href,
         })
+        return
       } catch {
-        // User cancelled share
+        // User dismissed the sheet.
+        return
       }
-    } else {
-      handleCopyLink()
     }
+    handleCopyLink()
   }
 
   return (
-    <footer className="relative border-t border-cyber-border bg-cyber-dark">
-      {/* Back to top */}
-      <div className="absolute -top-5 left-1/2 -translate-x-1/2">
-        <button
-          onClick={handleScrollTop}
-          className="p-3 bg-cyber-dark border border-cyber-border rounded-full hover:border-neon-cyan/40 hover:shadow-[0_0_15px_rgba(0,240,255,0.1)] transition-all duration-300 text-text-dim hover:text-neon-cyan"
-          aria-label="Back to top"
-        >
-          <ArrowUp size={16} />
-        </button>
-      </div>
+    <footer className="relative bg-void text-ink overflow-hidden">
+      <div className="px-5 sm:px-8 lg:px-12 xl:px-16 pt-20 lg:pt-28 pb-8">
+        <div className="mx-auto max-w-[1800px]">
+          <div className="grid md:grid-cols-12 gap-x-10 gap-y-14">
+            {/* Statement */}
+            <div className="md:col-span-5">
+              <p className="eyebrow-bare text-ink/45">Robo-Invent 2026</p>
+              <p className="mt-6 font-display font-semibold text-[26px] sm:text-[32px] leading-[1.1] tracking-[-0.035em] max-w-[18ch]">
+                Inter-school robotics championship for O/L students.
+              </p>
 
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
-          {/* Logo & Description */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 border-2 border-neon-cyan rounded-sm flex items-center justify-center">
-                <span className="font-orbitron text-neon-cyan text-xs font-bold">RI</span>
-              </div>
-              <div>
-                <p className="font-orbitron text-sm font-bold text-text-primary tracking-wider">RI 2026</p>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <button
+                  onClick={handleCopyLink}
+                  className="btn border border-ink/25 text-ink hover:bg-ink hover:text-void"
+                >
+                  {copied ? 'Link copied' : 'Copy link'}
+                </button>
+                <button
+                  onClick={handleShare}
+                  className="btn border border-ink/25 text-ink hover:bg-ink hover:text-void"
+                >
+                  Share
+                </button>
               </div>
             </div>
-            <p className="font-space text-sm text-text-secondary leading-relaxed mb-6">
-              Inter-school Robotics Championship for O/L Students.
-              Build, code, navigate, and innovate with the next generation of robotics engineers.
-            </p>
 
-            {/* Share buttons */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleCopyLink}
-                className="flex items-center gap-2 px-3 py-1.5 border border-cyber-border rounded-sm text-text-dim hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300"
-              >
-                <Link2 size={12} />
-                <span className="font-orbitron text-[8px] tracking-wider">
-                  {copied ? 'COPIED!' : 'COPY LINK'}
-                </span>
-              </button>
-              <button
-                onClick={handleShare}
-                className="flex items-center gap-2 px-3 py-1.5 border border-cyber-border rounded-sm text-text-dim hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300"
-              >
-                <Share2 size={12} />
-                <span className="font-orbitron text-[8px] tracking-wider">SHARE</span>
-              </button>
+            {/* Index */}
+            <nav className="md:col-span-3">
+              <p className="eyebrow-bare text-ink/45">Index</p>
+              <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2.5">
+                {quickLinks.map((link) => (
+                  <li key={link.name}>
+                    <a href={link.href} className="text-[14.5px] text-ink/70 hover:text-ink transition-colors duration-300">
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Contacts */}
+            <div className="md:col-span-4">
+              <p className="eyebrow-bare text-ink/45">Get in touch</p>
+              <div className="mt-6 space-y-6">
+                {contacts.map((person) => (
+                  <div key={person.email} className="border-t border-ink/15 pt-4">
+                    <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-ink/45">
+                      {person.role}
+                    </p>
+                    <p className="mt-2 text-[15px] font-medium">{person.name}</p>
+                    <a
+                      href={`mailto:${person.email}`}
+                      className="mt-1 inline-block text-[14px] text-ink/65 hover:text-flare transition-colors duration-300 break-all"
+                    >
+                      {person.email}
+                    </a>
+                  </div>
+                ))}
+                <div className="border-t border-ink/15 pt-4">
+                  <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-ink/45">
+                    Headquarters
+                  </p>
+                  <p className="mt-2 text-[15px] font-medium">NIBM Kandy Innovation Centre</p>
+                  <p className="mt-1 text-[14px] text-ink/65">Kandy, Sri Lanka</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-orbitron text-xs tracking-[0.2em] text-text-primary mb-6">
-              QUICK LINKS
-            </h4>
-            <ul className="space-y-2.5">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="font-space text-sm text-text-secondary hover:text-neon-cyan transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
+          {/* Organiser marks */}
+          <div className="mt-16 lg:mt-24 pt-8 border-t border-ink/15">
+            <p className="eyebrow-bare text-ink/40">Organised by</p>
+            <ul className="mt-7 flex flex-wrap items-center gap-x-12 gap-y-8">
+              {partners.map((p) => (
+                <li key={p.alt}>
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    className={`${p.height} w-auto opacity-70 hover:opacity-100 transition-opacity duration-300`}
+                    draggable={false}
+                  />
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact & Social */}
-          <div>
-            <h4 className="font-orbitron text-xs tracking-[0.2em] text-text-primary mb-6">
-              CONNECT
-            </h4>
-            <div className="space-y-4 mb-6">
-              <div>
-                <p className="font-orbitron text-[8px] tracking-[0.2em] text-text-dim uppercase font-extrabold mb-0.5">FACULTY ADVISOR</p>
-                <a href="mailto:vimukthi@nibm.lk" className="font-space text-sm text-text-secondary hover:text-neon-cyan transition-colors block">
-                  vimukthi@nibm.lk
-                </a>
-              </div>
-              <div>
-                <p className="font-orbitron text-[8px] tracking-[0.2em] text-text-dim uppercase font-extrabold mb-0.5">EVENT ORGANIZER</p>
-                <a href="mailto:tharunc39@gmail.com" className="font-space text-sm text-text-secondary hover:text-neon-cyan transition-colors block">
-                  tharunc39@gmail.com
-                </a>
-              </div>
-              <div>
-                <p className="font-orbitron text-[8px] tracking-[0.2em] text-text-dim uppercase font-extrabold mb-0.5">HEADQUARTERS</p>
-                <p className="font-space text-sm text-text-secondary">
-                  Kandy Innovation Centre
-                </p>
-                <p className="font-space text-xs text-text-dim mt-0.5">
-                  NIBM KIC, Kandy, Sri Lanka.
-                </p>
-              </div>
-            </div>
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="p-2 border border-cyber-border rounded-sm text-text-dim hover:text-neon-cyan hover:border-neon-cyan/30 hover:shadow-[0_0_10px_rgba(0,240,255,0.1)] transition-all duration-300"
-                >
-                  <social.icon size={16} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-cyber-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-space text-xs text-text-dim text-center md:text-left">
-            © 2026 National Institute of Business Management, Kandy Innovation Centre. All rights reserved.
-          </p>
-          <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 bg-neon-green rounded-full pulse-glow" />
-            <span className="font-orbitron text-[9px] tracking-[0.2em] text-text-dim">
-              System Online — RI 2026
-            </span>
+          {/* Bottom bar */}
+          <div className="mt-12 pt-6 border-t border-ink/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <p className="font-mono text-[10px] tracking-[0.14em] uppercase text-ink/40 max-w-[52ch] leading-relaxed">
+              &copy; 2026 National Institute of Business Management &middot; Kandy Innovation Centre
+            </p>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="group flex items-center gap-3 font-mono text-[10px] tracking-[0.16em] uppercase text-ink/60 hover:text-ink transition-colors duration-300"
+            >
+              Back to top
+              <span className="w-8 h-8 rounded-full border border-ink/25 flex items-center justify-center group-hover:bg-ink group-hover:text-void transition-colors duration-300">
+                <span aria-hidden className="text-[13px] leading-none -mt-px">&#8593;</span>
+              </span>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Wordmark bookend */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="px-5 sm:px-8 lg:px-12 xl:px-16 pb-2 select-none pointer-events-none"
+      >
+        <p className="mx-auto max-w-[1800px] font-display font-black text-[clamp(2rem,12.4vw,248px)] leading-[0.78] tracking-[-0.06em] uppercase text-ink/12 whitespace-nowrap">
+          Robo&#8209;Invent
+        </p>
+      </motion.div>
     </footer>
   )
 }

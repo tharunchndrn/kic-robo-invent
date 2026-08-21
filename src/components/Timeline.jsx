@@ -1,148 +1,122 @@
 import { motion } from 'framer-motion'
-import { Rocket, BookOpen, GraduationCap, Trophy, AlertCircle } from 'lucide-react'
 
 const phases = [
   {
     phase: '01',
-    time: 'June Week 1',
-    title: 'Launch & Registration Open',
-    desc: 'Official invitations sent to schools. Registration portal opens.',
-    icon: Rocket,
-    labelColor: 'text-neon-cyan',
-    iconColor: 'text-neon-cyan',
-    dotColor: 'bg-neon-cyan',
+    time: 'June, week 1',
+    title: 'Invitations go out',
+    desc: 'Official invitations reach schools across the district and the registration portal opens.',
   },
   {
     phase: '02',
-    time: 'July Week 1',
-    title: 'Registration Closes & Handbook Released',
-    desc: 'Team slots confirmed. Competition handbook and challenge specifications released.',
-    icon: BookOpen,
-    labelColor: 'text-neon-blue',
-    iconColor: 'text-neon-blue',
-    dotColor: 'bg-neon-blue',
+    time: 'July, week 1',
+    title: 'Entries close, handbook lands',
+    desc: 'Team slots are confirmed, and the competition handbook with full challenge specifications is released.',
   },
   {
     phase: '03',
-    time: 'July to August',
-    title: 'Robotics Bootcamp',
-    desc: 'Mandatory 4-day training program at KIC Campus labs.',
-    icon: GraduationCap,
-    labelColor: 'text-neon-amber',
-    iconColor: 'text-neon-amber',
-    dotColor: 'bg-neon-amber',
+    time: 'July — August',
+    title: 'Robotics bootcamp',
+    desc: 'The mandatory four-day training programme runs at the KIC Campus labs, in rotating cohorts.',
   },
   {
     phase: '04',
     time: 'September 2026',
-    title: 'Grand Finale at KIC NIBM',
-    desc: 'Time trials, judging, pit lanes, panel evaluation, and award ceremony.',
-    icon: Trophy,
-    labelColor: 'text-neon-green',
-    iconColor: 'text-neon-green',
-    dotColor: 'bg-neon-green',
-    note: 'Final date to be announced soon',
+    title: 'Grand finale at KIC NIBM',
+    desc: 'Time trials, pit lanes, panel evaluation and the award ceremony — all in one day.',
+    note: 'Exact date to be announced',
   },
 ]
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="py-20 md:py-28 px-4 relative">
-      <div className="max-w-4xl mx-auto">
-        {/* Label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-4"
-        >
-          <span className="section-label">Mission Timeline</span>
-        </motion.div>
+    <section id="timeline" className="relative bg-paper-deep border-y border-rule">
+      <div className="px-5 sm:px-8 lg:px-12 xl:px-16 py-24 lg:py-32">
+        <div className="mx-auto max-w-[1800px]">
+          <div className="grid lg:grid-cols-12 gap-x-12 gap-y-14">
+            {/* Sticky header holds the left column while the rail scrolls past */}
+            <div className="lg:col-span-4">
+              <div className="lg:sticky lg:top-28">
+                <motion.p
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  className="eyebrow"
+                >
+                  05 &mdash; Timeline
+                </motion.p>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ delay: 0.08 }}
+                  className="display mt-6 text-[11vw] sm:text-[8vw] lg:text-[3.6vw] max-w-[11ch]"
+                >
+                  From invitation to finish line
+                </motion.h2>
 
-        {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-center font-orbitron text-3xl md:text-4xl lg:text-5xl font-bold text-white glow-text mt-6 mb-16 tracking-wide"
-        >
-          Competition Timeline
-        </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ delay: 0.16 }}
+                  className="mt-7 max-w-[34ch] text-[15px] leading-relaxed text-ink-soft"
+                >
+                  Four phases across four months. Schools that register in June have the full
+                  runway; slots close for good in July.
+                </motion.p>
+              </div>
+            </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-neon-cyan/30 via-neon-blue/20 to-neon-green/30">
-            <motion.div
-              initial={{ height: 0 }}
-              whileInView={{ height: '100%' }}
-              viewport={{ once: true }}
-              transition={{ duration: 2, ease: 'easeOut' }}
-              className="w-full bg-gradient-to-b from-neon-cyan via-neon-blue to-neon-green opacity-40"
-            />
-          </div>
+            {/* Rail */}
+            <ol className="relative lg:col-span-7 lg:col-start-6 lg:pt-2">
+              <span className="absolute top-2 bottom-2 left-0 sm:left-[190px] w-px bg-rule" aria-hidden />
+              <motion.span
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+                style={{ originY: 0 }}
+                className="absolute top-2 bottom-2 left-0 sm:left-[190px] w-px bg-flare origin-top"
+                aria-hidden
+              />
 
-          {/* Phase cards */}
-          <div className="space-y-12">
-            {phases.map((phase, i) => (
-              <motion.div
-                key={phase.phase}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.6 }}
-                className={`relative flex items-start gap-6 md:gap-0 ${
-                  i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 z-10">
-                  <div className={`w-3 h-3 rounded-full ${phase.dotColor} shadow-lg`}>
-                    <div className={`absolute inset-0 rounded-full ${phase.dotColor} animate-ping opacity-20`} />
+              {phases.map((phase, i) => (
+                <motion.li
+                  key={phase.phase}
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-70px' }}
+                  transition={{ delay: i * 0.12, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative flex flex-col sm:flex-row pl-9 sm:pl-0 pb-14 last:pb-0"
+                >
+                  <span
+                    className="absolute left-0 sm:left-[190px] top-1.5 -translate-x-1/2 w-3 h-3 rounded-full bg-ink ring-4 ring-paper-deep"
+                    aria-hidden
+                  />
+
+                  <div className="sm:w-[190px] sm:shrink-0 sm:text-right sm:pr-11">
+                    <p className="eyebrow-bare text-flare">Phase {phase.phase}</p>
+                    <p className="mt-2.5 font-display font-semibold text-[17px] tracking-[-0.02em] text-ink-soft">
+                      {phase.time}
+                    </p>
                   </div>
-                </div>
 
-                {/* Card */}
-                <div className={`ml-12 md:ml-0 md:w-[45%] ${i % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <div className="cyber-card p-6 rounded-sm">
-                    {/* Phase & Time */}
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className={`font-orbitron text-[10px] tracking-[0.2em] ${phase.labelColor}`}>
-                        PHASE {phase.phase}
-                      </span>
-                      <span className="w-1 h-1 rounded-full bg-text-dim" />
-                      <span className="font-orbitron text-[10px] tracking-[0.15em] text-text-dim">
-                        {phase.time}
-                      </span>
-                    </div>
-
-                    {/* Icon + Title */}
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className={`p-2 rounded-sm bg-cyber-dark border border-cyber-border ${phase.iconColor}`}>
-                        <phase.icon size={18} />
-                      </div>
-                      <h3 className="font-orbitron text-sm md:text-base font-semibold text-text-primary">
-                        {phase.title}
-                      </h3>
-                    </div>
-
-                    {/* Description */}
-                    <p className="font-space text-sm text-text-secondary leading-relaxed">
+                  <div className="mt-4 sm:mt-0 sm:pl-11 max-w-[46ch]">
+                    <h3 className="display text-[26px] sm:text-[30px] lg:text-[34px]">{phase.title}</h3>
+                    <p className="mt-4 text-[14.5px] sm:text-[15px] leading-relaxed text-ink-soft">
                       {phase.desc}
                     </p>
-
-                    {/* Note */}
                     {phase.note && (
-                      <div className="mt-3 flex items-center gap-2 px-3 py-2 bg-neon-amber/5 border border-neon-amber/20 rounded-sm">
-                        <AlertCircle size={12} className="text-neon-amber flex-shrink-0" />
-                        <span className="font-space text-xs text-neon-amber/80">{phase.note}</span>
-                      </div>
+                      <p className="mt-5 inline-flex items-center gap-2.5 border border-flare/45 rounded-full pl-3 pr-4 py-1.5 font-mono text-[10px] tracking-[0.16em] uppercase text-flare">
+                        <span className="w-1.5 h-1.5 rounded-full bg-flare" />
+                        {phase.note}
+                      </p>
                     )}
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.li>
+              ))}
+            </ol>
           </div>
         </div>
       </div>

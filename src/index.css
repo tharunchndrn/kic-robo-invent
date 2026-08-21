@@ -1,38 +1,60 @@
 @import "tailwindcss";
 
-/* ============================================
-   ROBO-INVENT 2026 — Global Design System
-   ============================================ */
+/* ==========================================================================
+   ROBO-INVENT 2026 — Design System
+   Built from the event logo: deep navy #0D2F54 and circuit cyan #12B5DE.
+
+   Token names describe ROLE, not lightness — `paper` is whatever the page is
+   printed on, `ink` is whatever it is printed with. This is a dark theme, so
+   the substrate is navy-black and the ink is a cool bone.
+   ========================================================================== */
 
 @theme {
-  --color-cyber-black: #0a0a0f;
-  --color-cyber-dark: #0d0d14;
-  --color-cyber-panel: #12121c;
-  --color-cyber-card: #161625;
-  --color-cyber-border: #1e1e32;
-  --color-cyber-muted: #2a2a40;
-  --color-neon-cyan: #00f0ff;
-  --color-neon-blue: #3b82f6;
-  --color-neon-amber: #f59e0b;
-  --color-neon-green: #22c55e;
-  --color-neon-red: #ef4444;
-  --color-neon-purple: #a855f7;
-  --color-text-primary: #e8e8f0;
-  --color-text-secondary: #8888a8;
-  --color-text-dim: #555570;
-  --font-orbitron: 'Orbitron', sans-serif;
-  --font-rajdhani: 'Chakra Petch', sans-serif;
-  --font-space: 'Chakra Petch', sans-serif;
-  --font-body: 'Chakra Petch', sans-serif;
+  /* --- SURFACES (darkest to lightest) --------------------------------- */
+  --color-void: #050b13;
+  --color-paper: #08111c;
+  --color-paper-deep: #0c1927;
+  --color-card: #112232;
+
+  /* --- MARKS ---------------------------------------------------------- */
+  --color-ink: #e9eff5;
+  --color-ink-deep: #ffffff;
+  --color-ink-soft: #aab9c7;
+  --color-ink-mute: #7c8c9c;
+  --color-ink-faint: #6a7b8d;
+
+  /* --- LINES ---------------------------------------------------------- */
+  --color-rule: #1e3547;
+  --color-rule-soft: #172939;
+
+  /* --- ACCENTS -------------------------------------------------------- */
+  --color-flare: #12b5de;
+  --color-ember: #3d8fd4;
+  --color-navy: #0d2f54;
+  --color-moss: #3cc98f;
+  --color-clay: #2e6fb8;
+
+  /* --- FAMILIES ------------------------------------------------------- */
+  --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* --- GEOMETRY ------------------------------------------------------- */
+  --radius-frame: 28px;
+  --radius-panel: 18px;
+  --radius-tile: 12px;
+
+  /* --- MOTION --------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ============================================
-   BASE STYLES
-   ============================================ */
+/* ==========================================================================
+   BASE
+   ========================================================================== */
 
 @layer base {
   html {
     scroll-behavior: initial;
+    -webkit-text-size-adjust: 100%;
   }
 
   html.lenis,
@@ -49,240 +71,424 @@
   }
 
   body {
-    font-family: var(--font-body);
-    background-color: var(--color-cyber-black);
-    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    font-weight: 400;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'ss01' on, 'cv01' on;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-flare);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  /* Native controls should not inherit the browser's blue chrome. */
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+    color: inherit;
+  }
+
+  /* Dropdown lists are painted by the OS — tell it which theme we are in. */
+  select option {
+    background: var(--color-card);
+    color: var(--color-ink);
   }
 }
 
-/* ============================================
-   CUSTOM SCROLLBAR
-   ============================================ */
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-cyber-dark);
+  background: var(--color-paper-deep);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-cyber-muted);
-  border-radius: 3px;
+  background: var(--color-ink-faint);
+  border: 3px solid var(--color-paper-deep);
+  border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neon-cyan);
+  background: var(--color-ink-soft);
 }
 
-/* ============================================
+/* ==========================================================================
    COMPONENTS
-   ============================================ */
+   ========================================================================== */
 
 @layer components {
-  /* SECTION LABEL STYLES */
-  .section-label {
-    font-family: var(--font-orbitron), monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
-    color: var(--color-neon-cyan);
+  /* --- EYEBROW / MICRO LABEL ------------------------------------------ */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    padding: 6px 20px;
-    display: inline-block;
-    position: relative;
+    color: var(--color-ink-mute);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    line-height: 1;
   }
 
-  .section-label::before,
-  .section-label::after {
+  .eyebrow::before {
     content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border: 1px solid var(--color-neon-cyan);
+    width: 1.75rem;
+    height: 1px;
+    background: var(--color-ink-faint);
+    flex: none;
   }
 
-  .section-label::before {
-    top: -3px;
-    left: -3px;
-    border-right: none;
-    border-bottom: none;
+  .eyebrow-bare {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1;
   }
 
-  .section-label::after {
-    bottom: -3px;
-    right: -3px;
-    border-left: none;
-    border-top: none;
+  /* --- DISPLAY HEADING ------------------------------------------------ */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.92;
+    text-transform: uppercase;
+    text-wrap: balance;
   }
 
-  /* CYBER CARD STYLES */
-  .cyber-card {
-    background: linear-gradient(145deg, rgba(22, 22, 37, 0.8), rgba(18, 18, 28, 0.6));
-    border: 1px solid var(--color-cyber-border);
-    backdrop-filter: blur(10px);
+  /* --- FRAME (the big rounded canvas) --------------------------------- */
+  .frame {
     position: relative;
     overflow: hidden;
-    transition: all 0.4s ease;
+    border-radius: var(--radius-frame);
+    background: var(--color-card);
+    border: 1px solid var(--color-rule);
+    box-shadow:
+      inset 0 1px 0 rgba(233, 239, 245, 0.04),
+      0 30px 70px -34px rgba(0, 0, 0, 0.85);
   }
 
-  .cyber-card::before {
+  /* --- PANEL (section-level surface) ---------------------------------- */
+  .panel {
+    border-radius: var(--radius-panel);
+    background: var(--color-card);
+    border: 1px solid var(--color-rule);
+  }
+
+  /* --- GLASS CHIP (floating caption card, à la reference) ------------- */
+  .chip {
+    border-radius: 14px;
+    background: rgba(17, 34, 50, 0.68);
+    border: 1px solid rgba(233, 239, 245, 0.1);
+    backdrop-filter: blur(14px) saturate(1.3);
+    -webkit-backdrop-filter: blur(14px) saturate(1.3);
+    box-shadow:
+      inset 0 1px 0 rgba(233, 239, 245, 0.05),
+      0 20px 44px -26px rgba(0, 0, 0, 0.9);
+  }
+
+  /* --- BUTTONS -------------------------------------------------------- */
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.6rem;
+    border-radius: 99px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    transition:
+      background-color 0.35s var(--ease-out-expo),
+      color 0.35s var(--ease-out-expo),
+      border-color 0.35s var(--ease-out-expo),
+      transform 0.35s var(--ease-out-expo);
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .btn-solid {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-solid:hover {
+    background: var(--color-flare);
+    color: var(--color-paper);
+  }
+
+  /* Navy text on cyan — white on this cyan is only ~2.1:1. */
+  .btn-flare {
+    background: var(--color-flare);
+    color: var(--color-paper);
+  }
+
+  .btn-flare:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-ghost {
+    border-color: var(--color-rule);
+    color: var(--color-ink);
+    background: transparent;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* For use on the hot orange surfaces, where a light pill would wash out. */
+  .btn-invert {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  .btn-invert:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* --- UNDERLINED NAV LINK (reference style) -------------------------- */
+  .ulink {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+    color: var(--color-ink-soft);
+    transition: color 0.3s var(--ease-out-expo);
+  }
+
+  .ulink::after {
     content: '';
     position: absolute;
-    top: 0;
     left: 0;
-    right: 0;
+    bottom: 0;
+    width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-neon-cyan), transparent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    background: currentColor;
+    opacity: 0.35;
+    transform-origin: right;
+    transition:
+      transform 0.45s var(--ease-out-expo),
+      opacity 0.3s ease;
   }
 
-  .cyber-card:hover::before {
+  .ulink:hover {
+    color: var(--color-ink);
+  }
+
+  .ulink:hover::after {
+    opacity: 1;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: ulink-sweep 0.55s var(--ease-out-expo) forwards;
+  }
+
+  .ulink[data-active='true'] {
+    color: var(--color-flare);
+  }
+
+  .ulink[data-active='true']::after {
     opacity: 1;
   }
 
-  .cyber-card:hover {
-    border-color: rgba(0, 240, 255, 0.4);
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.08), inset 0 1px 0 rgba(0, 240, 255, 0.15);
-    transform: translateY(-2px) scale(1.01);
+  /* --- FIELD ---------------------------------------------------------- */
+  .field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--color-rule);
+    padding: 0.75rem 0;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    border-radius: 0;
+    transition: border-color 0.3s ease;
   }
 
-  /* GLOW BUTTON STYLES */
-  .glow-btn {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s ease;
+  .field::placeholder {
+    color: var(--color-ink-faint);
   }
 
-  .glow-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--color-flare);
   }
 
-  .glow-btn:hover::before {
-    transform: translateX(100%);
-  }
-
-  .glow-btn:hover {
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1);
-  }
-
-  /* HUD CORNER ACCENTS */
-  .hud-corners {
-    position: relative;
-  }
-
-  .hud-corners::before,
-  .hud-corners::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-  }
-
-  .hud-corners::before {
-    top: 0;
-    left: 0;
-    border-top: 2px solid var(--color-neon-cyan);
-    border-left: 2px solid var(--color-neon-cyan);
-  }
-
-  .hud-corners::after {
-    bottom: 0;
-    right: 0;
-    border-bottom: 2px solid var(--color-neon-cyan);
-    border-right: 2px solid var(--color-neon-cyan);
+  .field-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-mute);
   }
 }
 
-/* ============================================
+/* ==========================================================================
    UTILITIES
-   ============================================ */
+   ========================================================================== */
 
 @layer utilities {
-  /* GRID BACKGROUND */
-  .grid-bg {
-    background-image:
-      linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  /* GLOWING TEXT */
-  .glow-text {
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.2);
-  }
-
-  /* CIRCUIT DIVIDER */
-  .circuit-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-cyber-border), rgba(0, 240, 255, 0.3), var(--color-cyber-border), transparent);
-    position: relative;
-  }
-
-  .circuit-divider::before {
+  /* Fine film grain over the whole page — kills the flat "generated" look. */
+  .grain::after {
     content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    background: var(--color-neon-cyan);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--color-neon-cyan);
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    pointer-events: none;
+    /* Screened so the noise lightens the substrate instead of vanishing into it. */
+    opacity: 0.05;
+    mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+  /* Warm light spilling from a corner. */
+  .bleed-warm {
+    background:
+      radial-gradient(120% 100% at 0% 100%, rgba(18, 181, 222, 0.34) 0%, rgba(45, 122, 196, 0.18) 34%, rgba(90, 160, 220, 0.06) 56%, transparent 74%);
+  }
+
+  .bleed-warm-soft {
+    background:
+      radial-gradient(90% 80% at 100% 0%, rgba(18, 181, 222, 0.13) 0%, transparent 62%);
+  }
+
+  /* Engineering graph paper. */
+  .paper-grid {
+    background-image:
+      linear-gradient(to right, rgba(233, 239, 245, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(233, 239, 245, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .paper-grid-fine {
+    background-image:
+      linear-gradient(to right, rgba(233, 239, 245, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(233, 239, 245, 0.055) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Oversized ghost lettering used as a background mark. */
+  .watermark {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(233, 239, 245, 0.11);
+    user-select: none;
+    white-space: nowrap;
+    line-height: 0.8;
+  }
+
+  .watermark-solid {
+    font-family: var(--font-display);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+    color: rgba(233, 239, 245, 0.035);
+    user-select: none;
+    white-space: nowrap;
+    line-height: 0.8;
+  }
+
+  /* Tabular figures for anything counting. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' on;
+  }
+
+  .hairline {
+    height: 1px;
+    background: var(--color-rule);
   }
 }
 
-/* ============================================
-   ANIMATIONS
-   ============================================ */
+/* ==========================================================================
+   KEYFRAMES
+   ========================================================================== */
 
-@keyframes scan {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+/* ==========================================================================
+   SHORT-VIEWPORT HERO
+   On laptop screens the countdown is the first thing pushed below the fold.
+   Tighten the lockup rather than let that happen.
+   ========================================================================== */
+
+@media (min-width: 1024px) and (max-height: 840px) {
+  .hero-shell {
+    padding-top: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 7.2vw, 150px);
+  }
 }
 
-.scan-line {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.15), transparent);
-  animation: scan 8s linear infinite;
-  pointer-events: none;
-  z-index: 100;
+@keyframes ulink-sweep {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+@keyframes wheel-spin {
+  to { transform: rotate(360deg); }
+}
 
-@media (max-width: 768px) {
-  @layer components {
-    .section-label {
-      font-size: 0.55rem;
-      letter-spacing: 0.25em;
-      padding: 4px 14px;
-    }
+@keyframes dash-run {
+  to { stroke-dashoffset: -1000; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
