@@ -103,7 +103,7 @@ export default function Challenge() {
             >
               <Navigation size={14} className="text-neon-green" />
               <span className="font-orbitron text-[9px] tracking-[0.2em] text-text-dim">
-                AUTONOMOUS NAVIGATION REQUIRED — NO REMOTE 
+                AUTONOMOUS NAVIGATION REQUIRED — NO REMOTE Control
               </span>
             </motion.div>
           </div>
