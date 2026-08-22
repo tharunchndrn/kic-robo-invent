@@ -90,24 +90,27 @@ export default function About() {
             <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-ink-mute/70">
               Organised by
             </p>
-            <div className="mt-5 rounded-2xl bg-void px-6 py-5 overflow-x-auto">
-              <ul className="flex flex-nowrap items-center gap-x-6 sm:gap-x-8 w-max">
-                {partners.map((p) => (
-                  <li key={p.alt} className="shrink-0">
-                    <img
-                      src={p.src}
-                      alt={p.alt}
-                      className={`logo-dark ${p.height} w-auto opacity-90`}
-                      draggable={false}
-                    />
-                    <img
-                      src={p.srcColour}
-                      alt={p.alt}
-                      className={`logo-light ${p.height} w-auto`}
-                      draggable={false}
-                    />
-                  </li>
-                ))}
+            <div className="mt-5 overflow-hidden">
+              <ul className="marquee-track flex flex-nowrap items-center gap-x-6 sm:gap-x-8 w-max">
+                {[...partners, ...partners].map((p, i) => {
+                  const isDupe = i >= partners.length
+                  return (
+                    <li key={`${p.alt}-${i}`} className={`shrink-0 ${isDupe ? 'sm:hidden' : ''}`} aria-hidden={isDupe}>
+                      <img
+                        src={p.src}
+                        alt={p.alt}
+                        className={`logo-dark ${p.height} w-auto opacity-90`}
+                        draggable={false}
+                      />
+                      <img
+                        src={p.srcColour}
+                        alt={p.alt}
+                        className={`logo-light ${p.height} w-auto`}
+                        draggable={false}
+                      />
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           </motion.div>

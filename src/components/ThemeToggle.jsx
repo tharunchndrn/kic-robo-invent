@@ -30,7 +30,7 @@ export default function ThemeToggle({ className = '' }) {
     <button
       onClick={toggle}
       aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
-      className={`relative shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-rule bg-card/60 flex items-center justify-center text-ink hover:border-ink hover:text-flare transition-colors duration-300 ${className}`}
+      className={`relative shrink-0 w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-rule bg-card/60 flex items-center justify-center text-ink hover:border-ink hover:text-flare transition-colors duration-300 ${className}`}
     >
       <svg
         viewBox="0 0 24 24"

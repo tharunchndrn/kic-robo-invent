@@ -545,6 +545,25 @@
     height: 1px;
     background: var(--color-rule);
   }
+
+  /* Auto-scrolling logo strip on mobile, where the marks don't all fit in
+     one glance — the list is rendered twice so the loop is seamless, and
+     the duplicate set is dropped from layout above `sm` where it isn't
+     needed. */
+  .marquee-track {
+    animation: logo-marquee 14s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @media (min-width: 640px) {
+    .marquee-track {
+      animation: none;
+      transform: none;
+    }
+  }
 }
 
 /* ==========================================================================
@@ -565,6 +584,11 @@
   .hero-title {
     font-size: clamp(3rem, 7.2vw, 150px);
   }
+}
+
+@keyframes logo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @keyframes ulink-sweep {

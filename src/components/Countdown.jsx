@@ -39,17 +39,17 @@ export default function Countdown() {
         <span className="eyebrow-bare text-ink-mute">Grand finale in</span>
       </span>
 
-      <div className="mt-4 flex items-start gap-5 sm:gap-9 lg:gap-14">
+      <div className="mt-4 flex items-start gap-3 sm:gap-10 lg:gap-16">
         {units.map((unit, i) => (
-          <div key={unit.label} className="flex items-start gap-5 sm:gap-9 lg:gap-14">
+          <div key={unit.label} className="flex items-start gap-3 sm:gap-10 lg:gap-16">
             <div className="flex flex-col items-center">
-              <span className="font-display font-semibold tnum text-[42px] sm:text-[66px] lg:text-[84px] leading-[0.82] tracking-[-0.05em] text-ink">
+              <span className="font-display font-semibold tnum text-[34px] sm:text-[90px] lg:text-[118px] leading-[0.82] tracking-[-0.05em] text-ink">
                 {String(unit.value).padStart(unit.pad, '0')}
               </span>
-              <span className="mt-3 eyebrow-bare text-ink-faint">{unit.label}</span>
+              <span className="mt-2 sm:mt-3 eyebrow-bare text-ink-faint">{unit.label}</span>
             </div>
             {i < units.length - 1 && (
-              <span className="w-px h-9 sm:h-12 lg:h-16 bg-rule mt-1.5" aria-hidden />
+              <span className="w-px h-8 sm:h-16 lg:h-24 bg-rule mt-1.5" aria-hidden />
             )}
           </div>
         ))}

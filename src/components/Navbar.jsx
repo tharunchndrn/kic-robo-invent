@@ -76,7 +76,7 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-5 pt-3 sm:pt-4"
       >
         <div
-          className={`mx-auto max-w-[1800px] flex items-center justify-between gap-6 rounded-full pl-5 pr-2 sm:pl-7 sm:pr-2.5 h-14 sm:h-16 transition-all duration-500 ${
+          className={`mx-auto max-w-[1800px] flex items-center justify-between gap-3 sm:gap-6 rounded-full pl-4 pr-1.5 sm:pl-7 sm:pr-2.5 h-14 sm:h-16 transition-all duration-500 ${
             scrolled
               ? 'bg-card/85 backdrop-blur-xl border border-rule shadow-[0_10px_40px_-24px_rgba(0,0,0,0.7)]'
               : 'bg-transparent border border-transparent'
@@ -89,7 +89,7 @@ export default function Navbar() {
             className="flex items-center shrink-0 group"
             aria-label="Robo-Invent 2026, back to top"
           >
-            <RoboInventLockup className="h-9 sm:h-11 w-auto opacity-95 group-hover:opacity-100 transition-opacity duration-300" />
+            <RoboInventLockup className="h-7 sm:h-11 w-auto opacity-95 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
 
           {/* Desktop links */}
@@ -108,14 +108,14 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <ThemeToggle />
 
             <a
               href={REGISTER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-solid h-10 sm:h-11 px-5 sm:px-6 text-[10px] sm:text-[11px]"
+              className="btn btn-solid h-10 sm:h-11 px-3.5 sm:px-6 text-[10px] sm:text-[11px]"
             >
               Register
               <span aria-hidden className="text-[13px] leading-none -mt-px">&#8599;</span>
@@ -124,7 +124,7 @@ export default function Navbar() {
             {/* Mobile toggle — three rules that fold into a cross */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden w-11 h-11 rounded-full border border-rule flex flex-col items-start justify-center pl-3 gap-[5px] bg-card/60"
+              className="lg:hidden w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-rule flex flex-col items-start justify-center pl-2.5 sm:pl-3 gap-[5px] bg-card/60"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
             >

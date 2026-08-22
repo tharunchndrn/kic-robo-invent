@@ -62,24 +62,26 @@ function Boot({ done }) {
         <span className="eyebrow-bare text-ink-mute">Kandy &middot; 2026</span>
       </div>
 
-      <div className="mt-auto relative">
-        <p className="eyebrow-bare text-ink-mute max-w-[22ch] leading-relaxed">
-          Inter-school robotics championship
-        </p>
+      <div className="mt-auto relative flex items-end justify-between gap-4">
+        <div>
+          <p className="eyebrow-bare text-ink-mute max-w-[22ch] leading-relaxed">
+            Inter-school robotics championship
+          </p>
 
-        <div className="mt-8 sm:mt-10 flex items-center gap-6 sm:gap-8">
-          <span className="eyebrow-bare text-ink-faint shrink-0">Presented by</span>
-          <ul className="flex items-center gap-6 sm:gap-8">
-            {partners.map((p) => (
-              <li key={p.alt}>
-                <img src={p.src} alt={p.alt} className="logo-dark h-6 sm:h-7 w-auto opacity-90" draggable={false} />
-                <img src={p.srcColour} alt={p.alt} className="logo-light h-6 sm:h-7 w-auto" draggable={false} />
-              </li>
-            ))}
-          </ul>
+          <div className="mt-6 sm:mt-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-8">
+            <span className="eyebrow-bare text-ink-faint shrink-0">Presented by</span>
+            <ul className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-8">
+              {partners.map((p) => (
+                <li key={p.alt}>
+                  <img src={p.src} alt={p.alt} className="logo-dark h-5 sm:h-7 w-auto opacity-90" draggable={false} />
+                  <img src={p.srcColour} alt={p.alt} className="logo-light h-5 sm:h-7 w-auto" draggable={false} />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        <span className="absolute right-0 bottom-0 font-display font-semibold tnum text-[18vw] sm:text-[13vw] lg:text-[9vw] leading-[0.78] tracking-[-0.06em]">
+        <span className="shrink-0 sm:absolute sm:right-0 sm:bottom-0 font-display font-semibold tnum text-[16vw] sm:text-[13vw] lg:text-[9vw] leading-[0.78] tracking-[-0.06em]">
           {String(count).padStart(3, '0')}
         </span>
       </div>
