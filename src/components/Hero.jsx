@@ -85,7 +85,7 @@ export default function Hero() {
                 href="#about"
                 onClick={(e) => scrollTo(e, '#about')}
                 aria-label="Scroll to next section"
-                className="absolute right-0 bottom-0 hidden sm:flex w-12 h-12 lg:w-14 lg:h-14 rounded-[14px] bg-card border border-rule text-ink items-center justify-center hover:bg-flare hover:border-flare hover:text-paper transition-colors duration-300"
+                className="absolute right-0 bottom-0 hidden sm:flex w-12 h-12 lg:w-14 lg:h-14 rounded-[14px] bg-card border border-rule text-ink items-center justify-center hover:bg-flare hover:border-flare hover:text-carbon transition-colors duration-300"
               >
                 <motion.span
                   animate={{ y: [0, 4, 0] }}

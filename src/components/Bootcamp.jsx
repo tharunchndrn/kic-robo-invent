@@ -77,7 +77,7 @@ export default function Bootcamp() {
               <div className="flex items-baseline justify-between gap-4">
                 <span
                   className="font-display font-black text-[86px] lg:text-[104px] leading-[0.75] tracking-[-0.07em] text-transparent transition-colors duration-500 group-hover:text-flare"
-                  style={{ WebkitTextStroke: '1.5px #e9eff5' }}
+                  style={{ WebkitTextStroke: '1.5px var(--color-ink)' }}
                 >
                   {day.day}
                 </span>

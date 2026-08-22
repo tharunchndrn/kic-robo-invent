@@ -2,6 +2,13 @@ import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Lenis from 'lenis'
 
+import { RoboInventLockup } from './components/BrandLogo'
+import kic from './assets/brand/kic.png'
+import kicColour from './assets/brand/kic-colour.png'
+import nibm from './assets/brand/nibm.png'
+import nibmColour from './assets/brand/nibm-colour.png'
+import ieee from './assets/brand/ieee-sb.png'
+import ieeeColour from './assets/brand/ieee-sb-colour.png'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -18,6 +25,12 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 
 const BOOT_MS = 1500
+
+const partners = [
+  { src: nibm, srcColour: nibmColour, alt: 'NIBM — The City University' },
+  { src: kic, srcColour: kicColour, alt: 'Kandy Innovation Centre' },
+  { src: ieee, srcColour: ieeeColour, alt: 'IEEE Student Branch' },
+]
 
 function Boot({ done }) {
   const [count, setCount] = useState(0)
@@ -45,22 +58,33 @@ function Boot({ done }) {
       aria-hidden={done}
     >
       <div className="flex items-start justify-between">
-        <span className="font-display font-extrabold text-[15px] sm:text-[17px] tracking-[-0.05em] uppercase">
-          Robo&#8209;Invent
-        </span>
+        <RoboInventLockup className="h-9 sm:h-11 w-auto" />
         <span className="eyebrow-bare text-ink-mute">Kandy &middot; 2026</span>
       </div>
 
-      <div className="mt-auto flex items-end justify-between gap-6">
+      <div className="mt-auto relative">
         <p className="eyebrow-bare text-ink-mute max-w-[22ch] leading-relaxed">
           Inter-school robotics championship
         </p>
-        <span className="font-display font-semibold tnum text-[18vw] sm:text-[13vw] lg:text-[9vw] leading-[0.78] tracking-[-0.06em]">
+
+        <div className="mt-8 sm:mt-10 flex items-center gap-6 sm:gap-8">
+          <span className="eyebrow-bare text-ink-faint shrink-0">Presented by</span>
+          <ul className="flex items-center gap-6 sm:gap-8">
+            {partners.map((p) => (
+              <li key={p.alt}>
+                <img src={p.src} alt={p.alt} className="logo-dark h-6 sm:h-7 w-auto opacity-90" draggable={false} />
+                <img src={p.srcColour} alt={p.alt} className="logo-light h-6 sm:h-7 w-auto" draggable={false} />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <span className="absolute right-0 bottom-0 font-display font-semibold tnum text-[18vw] sm:text-[13vw] lg:text-[9vw] leading-[0.78] tracking-[-0.06em]">
           {String(count).padStart(3, '0')}
         </span>
       </div>
 
-      <div className="mt-6 h-px w-full bg-rule relative overflow-hidden">
+      <div className="mt-4 h-px w-full bg-rule relative overflow-hidden">
         <div
           className="absolute inset-y-0 left-0 bg-flare transition-[width] duration-100 ease-linear"
           style={{ width: `${count}%` }}

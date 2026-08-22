@@ -126,7 +126,7 @@ export default function Awards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className={`${award.span} relative overflow-hidden rounded-panel border p-7 sm:p-9 flex flex-col min-h-[260px] sm:min-h-[300px] text-paper transition-transform duration-500 hover:-translate-y-1 ${
+              className={`${award.span} relative overflow-hidden rounded-panel border p-7 sm:p-9 flex flex-col min-h-[260px] sm:min-h-[300px] text-carbon transition-transform duration-500 hover:-translate-y-1 ${
                 award.featured ? 'border-flare/60' : 'border-transparent'
               }`}
               style={award.featured ? { boxShadow: '0 30px 80px -24px rgba(18, 181, 222, 0.55)' } : undefined}
@@ -140,13 +140,13 @@ export default function Awards() {
                 <span className="flex items-center gap-2.5">
                   {award.featured && (
                     <span className="relative flex w-1.5 h-1.5">
-                      <span className="absolute inset-0 rounded-full bg-paper opacity-60 animate-ping" />
-                      <span className="relative w-1.5 h-1.5 rounded-full bg-paper" />
+                      <span className="absolute inset-0 rounded-full bg-carbon opacity-60 animate-ping" />
+                      <span className="relative w-1.5 h-1.5 rounded-full bg-carbon" />
                     </span>
                   )}
-                  <span className="eyebrow-bare text-paper/70">{award.rank}</span>
+                  <span className="eyebrow-bare text-carbon/70">{award.rank}</span>
                 </span>
-                <span className="text-paper">
+                <span className="text-carbon">
                   <AwardMark name={award.mark} />
                 </span>
               </div>
@@ -159,7 +159,7 @@ export default function Awards() {
                 >
                   {award.title}
                 </h3>
-                <p className="mt-4 text-[14px] sm:text-[14.5px] leading-relaxed max-w-[42ch] text-paper/80">
+                <p className="mt-4 text-[14px] sm:text-[14.5px] leading-relaxed max-w-[42ch] text-carbon/80">
                   {award.desc}
                 </p>
               </div>

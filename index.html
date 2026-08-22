@@ -5,7 +5,15 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#08111C" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('ri-theme');
+          if (saved === 'light') document.documentElement.dataset.theme = 'light';
+        } catch (e) {}
+      })();
+    </script>
     <meta name="description" content="Robo-Invent 2026 — Kandy Schools Robotics Championship for O/L Students Presented by Kandy Innovation Center, NIBM." />
     <meta name="keywords" content="Robotics, Competition, Kandy, NIBM, STEM, Arduino, O/L Students, Sri Lanka" />
     <meta name="author" content="Kandy Innovation Center, NIBM" />

@@ -1,14 +1,17 @@
 import { motion } from 'framer-motion'
 import kic from '../assets/brand/kic.png'
+import kicColour from '../assets/brand/kic-colour.png'
 import nibm from '../assets/brand/nibm.png'
+import nibmColour from '../assets/brand/nibm-colour.png'
 import ieee from '../assets/brand/ieee-sb.png'
+import ieeeColour from '../assets/brand/ieee-sb-colour.png'
 
-/* White-on-transparent marks, built for a dark ground — housed in a bg-void
-   chip here since About itself sits on bg-paper. */
+/* Each mark ships as white-on-transparent (dark theme) and full-colour
+   (light theme) — index.css swaps which one is in the document flow. */
 const partners = [
-  { src: nibm, alt: 'NIBM — The City University', height: 'h-6 sm:h-7' },
-  { src: kic, alt: 'Kandy Innovation Centre', height: 'h-8 sm:h-9' },
-  { src: ieee, alt: 'IEEE Student Branch', height: 'h-5 sm:h-6' },
+  { src: nibm, srcColour: nibmColour, alt: 'NIBM — The City University', height: 'h-6 sm:h-7' },
+  { src: kic, srcColour: kicColour, alt: 'Kandy Innovation Centre', height: 'h-8 sm:h-9' },
+  { src: ieee, srcColour: ieeeColour, alt: 'IEEE Student Branch', height: 'h-5 sm:h-6' },
 ]
 
 /*
@@ -94,7 +97,13 @@ export default function About() {
                     <img
                       src={p.src}
                       alt={p.alt}
-                      className={`${p.height} w-auto opacity-90`}
+                      className={`logo-dark ${p.height} w-auto opacity-90`}
+                      draggable={false}
+                    />
+                    <img
+                      src={p.srcColour}
+                      alt={p.alt}
+                      className={`logo-light ${p.height} w-auto`}
                       draggable={false}
                     />
                   </li>

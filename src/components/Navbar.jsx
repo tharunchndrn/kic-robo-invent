@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { RoboInventLockup } from './BrandLogo'
+import ThemeToggle from './ThemeToggle'
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -108,6 +109,8 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle />
+
             <a
               href={REGISTER_URL}
               target="_blank"

@@ -97,7 +97,7 @@ export default function SmartCityTrack() {
   const signalRed = progress > 0.35 && progress < 0.65
 
   return (
-    <div className="panel overflow-hidden">
+    <div className="theme-dark-locked panel overflow-hidden">
       {/* Sheet header — carries the live telemetry inline, no separate row */}
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 sm:px-5 py-3 border-b border-rule">
         <span className="flex items-center gap-2">

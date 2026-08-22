@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import kic from '../assets/brand/kic.png'
+import kicColour from '../assets/brand/kic-colour.png'
 import nibm from '../assets/brand/nibm.png'
+import nibmColour from '../assets/brand/nibm-colour.png'
 import ieee from '../assets/brand/ieee-sb.png'
+import ieeeColour from '../assets/brand/ieee-sb-colour.png'
 
-/* White variants, pre-cropped — heights are tuned per mark so their optical
-   weight matches rather than their raw pixel height. */
+/* Pre-cropped, heights tuned per mark so their optical weight matches
+   rather than their raw pixel height. Each ships white-on-transparent
+   (dark theme, this footer's default) and full-colour (light theme) —
+   index.css swaps which one is in the document flow. */
 const partners = [
-  { src: nibm, alt: 'NIBM — The City University', height: 'h-7 sm:h-8' },
-  { src: kic, alt: 'Kandy Innovation Centre', height: 'h-10 sm:h-12' },
-  { src: ieee, alt: 'IEEE Student Branch', height: 'h-6 sm:h-7' },
+  { src: nibm, srcColour: nibmColour, alt: 'NIBM — The City University', height: 'h-7 sm:h-8' },
+  { src: kic, srcColour: kicColour, alt: 'Kandy Innovation Centre', height: 'h-10 sm:h-12' },
+  { src: ieee, srcColour: ieeeColour, alt: 'IEEE Student Branch', height: 'h-6 sm:h-7' },
 ]
 
 const quickLinks = [
@@ -140,7 +145,13 @@ export default function Footer() {
                   <img
                     src={p.src}
                     alt={p.alt}
-                    className={`${p.height} w-auto opacity-70 hover:opacity-100 transition-opacity duration-300`}
+                    className={`logo-dark ${p.height} w-auto opacity-70 hover:opacity-100 transition-opacity duration-300`}
+                    draggable={false}
+                  />
+                  <img
+                    src={p.srcColour}
+                    alt={p.alt}
+                    className={`logo-light ${p.height} w-auto opacity-85 hover:opacity-100 transition-opacity duration-300`}
                     draggable={false}
                   />
                 </li>

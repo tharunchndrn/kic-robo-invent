@@ -36,6 +36,13 @@
   --color-silver: #9fb4c7;
   --color-violet: #8b7ff5;
 
+  /* Fixed — never flips with theme. For text/icons laid over surfaces that
+     are themselves fixed-bright regardless of site theme (award cards, the
+     registration CTA, hover states on flare fills). Using the theme-relative
+     `paper` token there would turn into light-on-bright once light mode
+     exists, wrecking contrast — see the .btn-flare comment below. */
+  --color-carbon: #08111c;
+
   /* --- FAMILIES ------------------------------------------------------- */
   --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
@@ -47,6 +54,81 @@
 
   /* --- MOTION --------------------------------------------------------- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   LIGHT THEME
+   Opt-in via [data-theme="light"] on <html>, set by the toggle in Navbar
+   and persisted to localStorage. No attribute = the brand default (dark).
+   Accents keep the same hue everywhere they're used as a FILL (buttons,
+   badges, gradients) — only `flare` and `moss` are deepened here, because
+   they also get used as bare TEXT directly on the page background, and the
+   original values read at only ~2:1 contrast on a light surface.
+   ========================================================================== */
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --color-void: #e7ecf1;
+  --color-paper: #f6f8fb;
+  --color-paper-deep: #eaeff4;
+  --color-card: #ffffff;
+
+  --color-ink: #0e1c2b;
+  --color-ink-deep: #000000;
+  --color-ink-soft: #3d5164;
+  --color-ink-mute: #66798c;
+  --color-ink-faint: #93a4b5;
+
+  --color-rule: #d8e0e8;
+  --color-rule-soft: #e7edf2;
+
+  --color-flare: #0c8fb2;
+  --color-moss: #1f9c68;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Locks a subtree to the dark palette regardless of site theme — for
+   surfaces that must stay dark either way: the footer (its partner marks
+   are white-on-transparent art with no light variant) and the schematic
+   diagrams (drawn as light lines on a dark "blueprint" sheet, not a
+   themeable illustration). */
+.theme-dark-locked {
+  --color-void: #050b13;
+  --color-paper: #08111c;
+  --color-paper-deep: #0c1927;
+  --color-card: #112232;
+  --color-ink: #e9eff5;
+  --color-ink-deep: #ffffff;
+  --color-ink-soft: #aab9c7;
+  --color-ink-mute: #7c8c9c;
+  --color-ink-faint: #6a7b8d;
+  --color-rule: #1e3547;
+  --color-rule-soft: #172939;
+  color-scheme: dark;
+}
+
+/* Partner marks that ship as two files — white-on-transparent for the dark
+   surfaces they sit on, and full-colour for light ones. Render both and
+   let the theme decide which is in the document flow, rather than picking
+   one image with JS. */
+.logo-dark {
+  display: inline-block;
+}
+
+.logo-light {
+  display: none;
+}
+
+:root[data-theme='light'] .logo-dark {
+  display: none;
+}
+
+:root[data-theme='light'] .logo-light {
+  display: inline-block;
 }
 
 /* ==========================================================================
@@ -81,6 +163,18 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'ss01' on, 'cv01' on;
+    transition: background-color 0.5s var(--ease-out-expo), color 0.5s var(--ease-out-expo);
+  }
+
+  /* Section-level and panel surfaces get the same fade so the light/dark
+     toggle reads as one smooth cross-fade, not a hard cut. */
+  section,
+  footer,
+  .panel,
+  .frame {
+    transition:
+      background-color 0.5s var(--ease-out-expo),
+      border-color 0.5s var(--ease-out-expo);
   }
 
   ::selection {
@@ -248,13 +342,15 @@
 
   .btn-solid:hover {
     background: var(--color-flare);
-    color: var(--color-paper);
+    color: var(--color-carbon);
   }
 
-  /* Navy text on cyan — white on this cyan is only ~2.1:1. */
+  /* Fixed-dark text on cyan, deliberately not the theme-relative `paper` —
+     flare stays the same fill in both themes, and white-on-cyan is only
+     ~2.1:1, so the text here has to stay dark regardless of site theme. */
   .btn-flare {
     background: var(--color-flare);
-    color: var(--color-paper);
+    color: var(--color-carbon);
   }
 
   .btn-flare:hover {
@@ -389,19 +485,30 @@
       radial-gradient(90% 80% at 100% 0%, rgba(18, 181, 222, 0.13) 0%, transparent 62%);
   }
 
-  /* Engineering graph paper. */
+  /* Engineering graph paper — tinted from `ink` so the lines stay faint
+     against whichever theme's background they're drawn on. */
   .paper-grid {
     background-image:
-      linear-gradient(to right, rgba(233, 239, 245, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(233, 239, 245, 0.05) 1px, transparent 1px);
+      linear-gradient(to right, color-mix(in srgb, var(--color-ink) 5%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 5%, transparent) 1px, transparent 1px);
     background-size: 56px 56px;
   }
 
   .paper-grid-fine {
     background-image:
-      linear-gradient(to right, rgba(233, 239, 245, 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(233, 239, 245, 0.055) 1px, transparent 1px);
+      linear-gradient(to right, color-mix(in srgb, var(--color-ink) 5.5%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--color-ink) 5.5%, transparent) 1px, transparent 1px);
     background-size: 22px 22px;
+  }
+
+  /* Same grid, but fixed to the original light-on-dark tint regardless of
+     theme — for the registration CTA, which is always a bright fixed
+     gradient and never flips. */
+  .paper-grid-fixed {
+    background-image:
+      linear-gradient(to right, rgba(233, 239, 245, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(233, 239, 245, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 
   /* Oversized ghost lettering used as a background mark. */
@@ -411,7 +518,7 @@
     letter-spacing: -0.06em;
     text-transform: uppercase;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(233, 239, 245, 0.11);
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-ink) 11%, transparent);
     user-select: none;
     white-space: nowrap;
     line-height: 0.8;
@@ -422,7 +529,7 @@
     font-weight: 900;
     letter-spacing: -0.06em;
     text-transform: uppercase;
-    color: rgba(233, 239, 245, 0.035);
+    color: color-mix(in srgb, var(--color-ink) 3.5%, transparent);
     user-select: none;
     white-space: nowrap;
     line-height: 0.8;
