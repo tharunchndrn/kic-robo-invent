@@ -109,7 +109,7 @@ export default function Bootcamp() {
         >
           {[
             { k: 'Venue', v: 'NIBM KIC Campus labs' },
-            { k: 'Window', v: 'July to August 2026' },
+            { k: 'Window', v: 'September 2026' },
             { k: 'Cost to schools', v: 'None — fully sponsored' },
           ].map((item) => (
             <div key={item.k}>

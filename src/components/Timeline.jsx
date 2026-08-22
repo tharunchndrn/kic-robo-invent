@@ -9,19 +9,19 @@ const phases = [
   },
   {
     phase: '02',
-    time: 'July, week 1',
+    time: 'September, week 1',
     title: 'Entries close, handbook lands',
     desc: 'Team slots are confirmed, and the competition handbook with full challenge specifications is released.',
   },
   {
     phase: '03',
-    time: 'July — August',
+    time: 'September',
     title: 'Robotics bootcamp',
     desc: 'The mandatory four-day training programme runs at the KIC Campus labs, in rotating cohorts.',
   },
   {
     phase: '04',
-    time: 'September 2026',
+    time: 'October, week 1',
     title: 'Grand finale at KIC NIBM',
     desc: 'Time trials, pit lanes, panel evaluation and the award ceremony — all in one day.',
     note: 'Exact date to be announced',
@@ -62,8 +62,8 @@ export default function Timeline() {
                   transition={{ delay: 0.16 }}
                   className="mt-7 max-w-[34ch] text-[15px] leading-relaxed text-ink-soft"
                 >
-                  Four phases across four months. Schools that register in June have the full
-                  runway; slots close for good in July.
+                  Four phases from June to October. Schools that register in June have the full
+                  runway; slots close for good in September.
                 </motion.p>
               </div>
             </div>

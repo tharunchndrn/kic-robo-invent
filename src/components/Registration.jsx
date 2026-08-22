@@ -61,7 +61,7 @@ export default function Registration() {
               <dl className="mt-8 grid grid-cols-2 gap-y-5 gap-x-6">
                 {[
                   { k: 'Status', v: 'Open' },
-                  { k: 'Closes', v: 'July 2026' },
+                  { k: 'Closes', v: 'September 2026' },
                   { k: 'Entry fee', v: 'None' },
                   { k: 'District', v: 'Kandy' },
                 ].map((item) => (

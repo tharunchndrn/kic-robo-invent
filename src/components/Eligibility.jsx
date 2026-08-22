@@ -111,7 +111,7 @@ export default function Eligibility() {
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 px-5 sm:px-8 py-6 bg-paper-deep/60 border-t border-rule">
             <p className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-ink-mute">
-              Registration closes July 2026
+              Registration closes September 2026
             </p>
             <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" className="btn btn-solid">
               Claim a slot

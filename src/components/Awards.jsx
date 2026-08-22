@@ -49,6 +49,16 @@ function AwardMark({ name }) {
   )
 }
 
+/* Every card is fully coloured, but the champion's blue is kept the most
+   saturated of the four so it still reads as the lead result — the others
+   are pitched a shade quieter rather than competing at equal intensity. */
+const GRADIENTS = {
+  flare: 'linear-gradient(135deg, #35d0f0 0%, #16b4de 45%, #1e7fc0 100%)',
+  silver: 'linear-gradient(135deg, #b7c3ce 0%, #8ea0b2 45%, #63788c 100%)',
+  moss: 'linear-gradient(135deg, #5cd39c 0%, #30b47d 45%, #1a8a5c 100%)',
+  violet: 'linear-gradient(135deg, #9c8ff2 0%, #7a6cec 45%, #5a4bc4 100%)',
+}
+
 const awards = [
   {
     rank: 'First place',
@@ -56,6 +66,7 @@ const awards = [
     desc: 'Grand champion of Robo-Invent 2026 — fastest clean run, best-argued build.',
     mark: 'trophy',
     span: 'lg:col-span-7',
+    accent: 'flare',
     featured: true,
   },
   {
@@ -64,6 +75,7 @@ const awards = [
     desc: 'Second overall across every scoring criterion.',
     mark: 'medal',
     span: 'lg:col-span-5',
+    accent: 'silver',
   },
   {
     rank: 'Special award',
@@ -71,6 +83,7 @@ const awards = [
     desc: 'The build that solved the course in a way the judges had not seen coming.',
     mark: 'bulb',
     span: 'lg:col-span-5',
+    accent: 'moss',
   },
   {
     rank: 'Special award',
@@ -78,6 +91,7 @@ const awards = [
     desc: 'The team that explained their engineering most clearly under questioning.',
     mark: 'speak',
     span: 'lg:col-span-7',
+    accent: 'violet',
   },
 ]
 
@@ -112,26 +126,27 @@ export default function Awards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className={`${award.span} relative overflow-hidden rounded-panel border p-7 sm:p-9 flex flex-col min-h-[260px] sm:min-h-[300px] transition-transform duration-500 hover:-translate-y-1 ${
-                award.featured
-                  ? 'border-transparent bg-flare text-paper'
-                  : 'border-rule bg-card text-ink'
+              className={`${award.span} relative overflow-hidden rounded-panel border p-7 sm:p-9 flex flex-col min-h-[260px] sm:min-h-[300px] text-paper transition-transform duration-500 hover:-translate-y-1 ${
+                award.featured ? 'border-flare/60' : 'border-transparent'
               }`}
+              style={award.featured ? { boxShadow: '0 30px 80px -24px rgba(18, 181, 222, 0.55)' } : undefined}
             >
-              {award.featured && (
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(135deg, #35d0f0 0%, #16b4de 45%, #1e7fc0 100%)',
-                  }}
-                />
-              )}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: GRADIENTS[award.accent] }}
+              />
 
               <div className="relative flex items-start justify-between gap-6">
-                <span className={`eyebrow-bare ${award.featured ? 'text-paper/70' : 'text-ink-mute'}`}>
-                  {award.rank}
+                <span className="flex items-center gap-2.5">
+                  {award.featured && (
+                    <span className="relative flex w-1.5 h-1.5">
+                      <span className="absolute inset-0 rounded-full bg-paper opacity-60 animate-ping" />
+                      <span className="relative w-1.5 h-1.5 rounded-full bg-paper" />
+                    </span>
+                  )}
+                  <span className="eyebrow-bare text-paper/70">{award.rank}</span>
                 </span>
-                <span className={award.featured ? 'text-paper' : 'text-ink'}>
+                <span className="text-paper">
                   <AwardMark name={award.mark} />
                 </span>
               </div>
@@ -144,11 +159,7 @@ export default function Awards() {
                 >
                   {award.title}
                 </h3>
-                <p
-                  className={`mt-4 text-[14px] sm:text-[14.5px] leading-relaxed max-w-[42ch] ${
-                    award.featured ? 'text-paper/80' : 'text-ink-soft'
-                  }`}
-                >
+                <p className="mt-4 text-[14px] sm:text-[14.5px] leading-relaxed max-w-[42ch] text-paper/80">
                   {award.desc}
                 </p>
               </div>

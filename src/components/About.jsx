@@ -1,4 +1,15 @@
 import { motion } from 'framer-motion'
+import kic from '../assets/brand/kic.png'
+import nibm from '../assets/brand/nibm.png'
+import ieee from '../assets/brand/ieee-sb.png'
+
+/* White-on-transparent marks, built for a dark ground — housed in a bg-void
+   chip here since About itself sits on bg-paper. */
+const partners = [
+  { src: nibm, alt: 'NIBM — The City University', height: 'h-6 sm:h-7' },
+  { src: kic, alt: 'Kandy Innovation Centre', height: 'h-8 sm:h-9' },
+  { src: ieee, alt: 'IEEE Student Branch', height: 'h-5 sm:h-6' },
+]
 
 /*
  * A genuinely different structure, not a re-skinned ledger: the three
@@ -13,7 +24,7 @@ export default function About() {
     <section id="about" className="relative px-5 sm:px-8 lg:px-12 xl:px-16 py-24 lg:py-32">
       <div className="mx-auto max-w-[1800px] grid lg:grid-cols-12 gap-x-10 gap-y-16 items-center">
         {/* Statement */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 min-w-0">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,6 +76,32 @@ export default function About() {
               school needs a robotics club, a lab, or any prior experience to take part.
             </p>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ delay: 0.32 }}
+            className="mt-10 pt-6 border-t border-rule max-w-[640px]"
+          >
+            <p className="font-mono text-[10px] tracking-[0.16em] uppercase text-ink-mute/70">
+              Organised by
+            </p>
+            <div className="mt-5 rounded-2xl bg-void px-6 py-5 overflow-x-auto">
+              <ul className="flex flex-nowrap items-center gap-x-6 sm:gap-x-8 w-max">
+                {partners.map((p) => (
+                  <li key={p.alt} className="shrink-0">
+                    <img
+                      src={p.src}
+                      alt={p.alt}
+                      className={`${p.height} w-auto opacity-90`}
+                      draggable={false}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
         </div>
 
         {/* The one number that's actually real */}
@@ -88,7 +125,7 @@ export default function About() {
             Days of bootcamp
           </p>
           <p className="mt-2 font-mono text-[11px] tracking-[0.14em] uppercase text-ink-mute">
-            Hands-on, at KIC labs &middot; July to August 2026
+            Hands-on, at KIC labs &middot; September 2026
           </p>
         </motion.div>
       </div>

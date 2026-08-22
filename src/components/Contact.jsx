@@ -9,7 +9,6 @@ const WhatsAppGlyph = ({ size = 14, className }) => (
 
 const people = [
   {
-    initials: 'VP',
     role: 'Faculty / staff advisor',
     name: 'Mr. Vimukthi Pathirana',
     org: 'Kandy Innovation Centre, NIBM',
@@ -20,7 +19,6 @@ const people = [
     handles: ['School communications', 'Institutional matters', 'Academic coordination'],
   },
   {
-    initials: 'TC',
     role: 'Event organiser',
     name: 'Tharun Chandran',
     org: 'Event coordinator, Robo-Invent 2026',
@@ -110,17 +108,12 @@ export default function Contact() {
               transition={{ delay: i * 0.1, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
               className="border-t border-ink pt-7"
             >
-              <div className="flex items-start gap-5">
-                <span className="shrink-0 w-14 h-14 rounded-tile border border-ink flex items-center justify-center font-display font-bold text-lg tracking-[-0.03em]">
-                  {person.initials}
-                </span>
-                <div className="min-w-0">
-                  <p className="eyebrow-bare text-flare">{person.role}</p>
-                  <h3 className="mt-2.5 font-display font-semibold text-xl sm:text-2xl tracking-[-0.03em] leading-tight">
-                    {person.name}
-                  </h3>
-                  <p className="mt-1.5 text-[13.5px] text-ink-mute">{person.org}</p>
-                </div>
+              <div className="min-w-0">
+                <p className="eyebrow-bare text-flare">{person.role}</p>
+                <h3 className="mt-2.5 font-display font-semibold text-xl sm:text-2xl tracking-[-0.03em] leading-tight">
+                  {person.name}
+                </h3>
+                <p className="mt-1.5 text-[13.5px] text-ink-mute">{person.org}</p>
               </div>
 
               <dl className="mt-7">

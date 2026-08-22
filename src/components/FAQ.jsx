@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: 'Is the robotics bootcamp mandatory?',
-    a: 'Yes. The four-day bootcamp is mandatory for every participating team and runs at the KIC NIBM Campus labs between July and August 2026.',
+    a: 'Yes. The four-day bootcamp is mandatory for every participating team and runs at the KIC NIBM Campus labs in September 2026.',
   },
   {
     q: 'What will students learn at the bootcamp?',

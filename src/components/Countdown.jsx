@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const TARGET = new Date('2026-09-01T00:00:00').getTime()
+const TARGET = new Date('2026-10-02T00:00:00').getTime()
 
 function remaining() {
   const diff = TARGET - Date.now()
@@ -39,24 +39,24 @@ export default function Countdown() {
         <span className="eyebrow-bare text-ink-mute">Grand finale in</span>
       </span>
 
-      <div className="mt-4 flex items-start gap-4 sm:gap-8 lg:gap-11">
+      <div className="mt-4 flex items-start gap-5 sm:gap-9 lg:gap-14">
         {units.map((unit, i) => (
-          <div key={unit.label} className="flex items-start gap-4 sm:gap-8 lg:gap-11">
+          <div key={unit.label} className="flex items-start gap-5 sm:gap-9 lg:gap-14">
             <div className="flex flex-col items-center">
-              <span className="font-display font-semibold tnum text-[34px] sm:text-[52px] lg:text-[64px] leading-[0.82] tracking-[-0.05em] text-ink">
+              <span className="font-display font-semibold tnum text-[42px] sm:text-[66px] lg:text-[84px] leading-[0.82] tracking-[-0.05em] text-ink">
                 {String(unit.value).padStart(unit.pad, '0')}
               </span>
-              <span className="mt-2.5 eyebrow-bare text-ink-faint">{unit.label}</span>
+              <span className="mt-3 eyebrow-bare text-ink-faint">{unit.label}</span>
             </div>
             {i < units.length - 1 && (
-              <span className="w-px h-7 sm:h-10 lg:h-12 bg-rule mt-1" aria-hidden />
+              <span className="w-px h-9 sm:h-12 lg:h-16 bg-rule mt-1.5" aria-hidden />
             )}
           </div>
         ))}
       </div>
 
       <p className="mt-5 font-mono text-[10px] tracking-[0.16em] uppercase text-ink-mute">
-        September 2026 &middot; exact date to be announced
+        October 2026 &middot; exact date to be announced
       </p>
     </div>
   )

@@ -98,8 +98,9 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                data-active={activeSection === link.href.slice(1)}
-                className="ulink"
+                className={`transition-colors duration-300 ${
+                  activeSection === link.href.slice(1) ? 'text-flare' : 'text-ink-soft hover:text-ink'
+                }`}
               >
                 {link.name}
               </a>
