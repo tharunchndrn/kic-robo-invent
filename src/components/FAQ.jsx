@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: 'What will students learn at the bootcamp?',
-    a: 'Arduino programming, sensor integration with IR and ultrasonic modules, motor control, circuit wiring, autonomous navigation algorithms, line tracking, obstacle avoidance, and how to present an engineering decision.',
+    a: 'Day one covers electronics fundamentals and Arduino fundamentals, starting from absolute basics. The curriculum for the remaining days will be announced closer to the bootcamp.',
   },
   {
     q: 'What exactly is the main challenge?',
