@@ -3,15 +3,12 @@ import kic from '../assets/brand/kic.png'
 import kicColour from '../assets/brand/kic-colour.png'
 import nibm from '../assets/brand/nibm.png'
 import nibmColour from '../assets/brand/nibm-colour.png'
-import ieee from '../assets/brand/ieee-sb.png'
-import ieeeColour from '../assets/brand/ieee-sb-colour.png'
 
 /* Each mark ships as white-on-transparent (dark theme) and full-colour
    (light theme) — index.css swaps which one is in the document flow. */
 const partners = [
   { src: nibm, srcColour: nibmColour, alt: 'NIBM — The City University', height: 'h-6 sm:h-7' },
   { src: kic, srcColour: kicColour, alt: 'Kandy Innovation Centre', height: 'h-8 sm:h-9' },
-  { src: ieee, srcColour: ieeeColour, alt: 'IEEE Student Branch', height: 'h-5 sm:h-6' },
 ]
 
 /*

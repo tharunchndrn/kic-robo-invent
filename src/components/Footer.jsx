@@ -4,8 +4,6 @@ import kic from '../assets/brand/kic.png'
 import kicColour from '../assets/brand/kic-colour.png'
 import nibm from '../assets/brand/nibm.png'
 import nibmColour from '../assets/brand/nibm-colour.png'
-import ieee from '../assets/brand/ieee-sb.png'
-import ieeeColour from '../assets/brand/ieee-sb-colour.png'
 
 /* Pre-cropped, heights tuned per mark so their optical weight matches
    rather than their raw pixel height. Each ships white-on-transparent
@@ -14,7 +12,6 @@ import ieeeColour from '../assets/brand/ieee-sb-colour.png'
 const partners = [
   { src: nibm, srcColour: nibmColour, alt: 'NIBM — The City University', height: 'h-7 sm:h-8' },
   { src: kic, srcColour: kicColour, alt: 'Kandy Innovation Centre', height: 'h-10 sm:h-12' },
-  { src: ieee, srcColour: ieeeColour, alt: 'IEEE Student Branch', height: 'h-6 sm:h-7' },
 ]
 
 const quickLinks = [

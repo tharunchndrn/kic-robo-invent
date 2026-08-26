@@ -7,8 +7,6 @@ import kic from './assets/brand/kic.png'
 import kicColour from './assets/brand/kic-colour.png'
 import nibm from './assets/brand/nibm.png'
 import nibmColour from './assets/brand/nibm-colour.png'
-import ieee from './assets/brand/ieee-sb.png'
-import ieeeColour from './assets/brand/ieee-sb-colour.png'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -29,7 +27,6 @@ const BOOT_MS = 1500
 const partners = [
   { src: nibm, srcColour: nibmColour, alt: 'NIBM — The City University' },
   { src: kic, srcColour: kicColour, alt: 'Kandy Innovation Centre' },
-  { src: ieee, srcColour: ieeeColour, alt: 'IEEE Student Branch' },
 ]
 
 function Boot({ done }) {
