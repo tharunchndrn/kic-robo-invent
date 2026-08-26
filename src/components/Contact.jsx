@@ -110,7 +110,7 @@ export default function Contact() {
             >
               <div className="min-w-0">
                 <p className="eyebrow-bare text-flare">{person.role}</p>
-                <h3 className="mt-2.5 font-display font-semibold text-xl sm:text-2xl tracking-[-0.03em] leading-tight">
+                <h3 className="mt-2.5 font-display font-bold text-xl sm:text-2xl tracking-[-0.03em] leading-tight">
                   {person.name}
                 </h3>
                 <p className="mt-1.5 text-[13.5px] text-ink-mute">{person.org}</p>
