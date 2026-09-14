@@ -14,8 +14,6 @@ const navLinks = [
   { name: 'Contact', href: '#contact' },
 ]
 
-const REGISTER_URL = 'https://forms.gle/veywtaSV25KpvPPZ6'
-
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -111,16 +109,6 @@ export default function Navbar() {
           <div className="flex items-center gap-1.5 sm:gap-2">
             <ThemeToggle />
 
-            <a
-              href={REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-solid h-10 sm:h-11 px-3.5 sm:px-6 text-[10px] sm:text-[11px]"
-            >
-              Register
-              <span aria-hidden className="text-[13px] leading-none -mt-px">&#8599;</span>
-            </a>
-
             {/* Mobile toggle — three rules that fold into a cross */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -175,13 +163,11 @@ export default function Navbar() {
 
               <div className="mt-auto pt-8">
                 <a
-                  href={REGISTER_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#bootcamp"
+                  onClick={(e) => handleLinkClick(e, '#bootcamp')}
                   className="btn btn-flare w-full h-14"
                 >
-                  Register your school
-                  <span aria-hidden className="text-base leading-none -mt-px">&#8599;</span>
+                  Follow the bootcamp
                 </a>
                 <p className="mt-4 font-mono text-[10px] tracking-[0.18em] uppercase text-ink-mute text-center">
                   Kandy Innovation Centre &middot; NIBM

@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion'
 
-const REGISTER_URL = 'https://forms.gle/veywtaSV25KpvPPZ6'
-
 const spec = [
   {
     field: 'Target group',
@@ -111,11 +109,10 @@ export default function Eligibility() {
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 px-5 sm:px-8 py-6 bg-paper-deep/60 border-t border-rule">
             <p className="font-mono text-[10.5px] tracking-[0.14em] uppercase text-ink-mute">
-              Registration closes September 2026
+              Entries closed &mdash; bootcamp under way
             </p>
-            <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" className="btn btn-solid">
-              Claim a slot
-              <span aria-hidden className="text-base leading-none -mt-px">&#8599;</span>
+            <a href="#bootcamp" className="btn btn-solid">
+              See the day board
             </a>
           </div>
         </motion.div>

@@ -18,6 +18,7 @@ const phases = [
     time: 'September',
     title: 'Robotics bootcamp',
     desc: 'The mandatory four-day training programme runs at the KIC Campus labs, in rotating cohorts.',
+    note: 'In progress — day 01 done, day 02 on 17 Sep',
   },
   {
     phase: '04',
@@ -62,8 +63,8 @@ export default function Timeline() {
                   transition={{ delay: 0.16 }}
                   className="mt-7 max-w-[34ch] text-[15px] leading-relaxed text-ink-soft"
                 >
-                  Four phases from June to October. Schools that register in June have the full
-                  runway; slots close for good in September.
+                  Four phases from June to October. Entries opened in June and closed in
+                  September; the bootcamp and the finale are what remain.
                 </motion.p>
               </div>
             </div>

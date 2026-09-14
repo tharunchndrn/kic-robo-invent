@@ -22,7 +22,7 @@ const quickLinks = [
   { name: 'Timeline', href: '#timeline' },
   { name: 'Scoring', href: '#judging' },
   { name: 'Awards', href: '#awards' },
-  { name: 'Register', href: '#register' },
+  { name: 'Now running', href: '#now' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
 ]

@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
 import Countdown from './Countdown'
 
-const REGISTER_URL = 'https://forms.gle/veywtaSV25KpvPPZ6'
-
 export default function Hero() {
   const scrollTo = (e, href) => {
     e.preventDefault()
@@ -65,9 +63,8 @@ export default function Hero() {
             </motion.p>
 
             <motion.div {...rise(0.55)} className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" className="btn btn-flare">
-                Register your school
-                <span aria-hidden className="text-base leading-none -mt-px">&#8599;</span>
+              <a href="#bootcamp" onClick={(e) => scrollTo(e, '#bootcamp')} className="btn btn-flare">
+                Follow the bootcamp
               </a>
               <a href="#challenge" onClick={(e) => scrollTo(e, '#challenge')} className="btn btn-ghost">
                 See the challenge

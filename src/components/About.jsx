@@ -56,7 +56,7 @@ export default function About() {
             <span className="text-ink-soft">30 schools</span>,{' '}
             <span className="text-ink-soft">40 teams</span> and{' '}
             <span className="text-ink-soft">120 students</span> across the Kandy District.
-            Nobody&apos;s registered yet.
+            Entries for this edition are now closed.
           </motion.p>
 
           <motion.div

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const faqs = [
   {
     q: 'Who is eligible to participate?',
-    a: 'The competition is open to all O/L level students from schools in the Kandy District. Each school can register up to two teams, with a maximum of three students per team.',
+    a: 'The competition is open to all O/L level students from schools in the Kandy District. Each school enters up to two teams, with a maximum of three students per team.',
   },
   {
     q: 'How many students can be in one team?',

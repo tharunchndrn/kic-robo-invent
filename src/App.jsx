@@ -16,7 +16,7 @@ import Bootcamp from './components/Bootcamp'
 import Timeline from './components/Timeline'
 import Judging from './components/Judging'
 import Awards from './components/Awards'
-import Registration from './components/Registration'
+import NowRunning from './components/NowRunning'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -160,7 +160,7 @@ export default function App() {
         <Timeline />
         <Judging />
         <Awards />
-        <Registration />
+        <NowRunning />
         <FAQ />
         <Contact />
       </main>

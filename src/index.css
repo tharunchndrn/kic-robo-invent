@@ -546,6 +546,18 @@
     background: var(--color-rule);
   }
 
+  /* Horizontal card strips scroll by drag/swipe, and the page's 10px webkit
+     scrollbar is far too heavy sitting under a row of cards — hide the bar
+     without touching the scrolling itself. */
+  .filmstrip {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .filmstrip::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Auto-scrolling logo strip on mobile, where the marks don't all fit in
      one glance — the list is rendered twice so the loop is seamless, and
      the duplicate set is dropped from layout above `sm` where it isn't
