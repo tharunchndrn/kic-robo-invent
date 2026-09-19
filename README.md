@@ -1,78 +1,79 @@
-# Robo-Invent 2026
+<div align="center">
+  <img src="src/assets/Event%20LOGOS/Event%20LOGOS/robo-INVENT%20Logo.png" alt="Robo-Invent 2026" width="350" />
+  
+  <p align="center">
+    <strong>Landing site for the Kandy Schools Robotics Championship</strong><br>
+    <em>Run by the Kandy Innovation Centre at NIBM</em>
+  </p>
+</div>
 
-Landing site for the Kandy Schools Robotics Championship, run by the Kandy
-Innovation Centre at NIBM.
+---
 
-React 19 + Vite 8 + Tailwind v4. Motion via `framer-motion`, momentum scrolling
-via `lenis`.
+Built with **React 19**, **Vite 8**, and **Tailwind CSS v4**. Animations powered by `framer-motion`, and fluid momentum scrolling handled by `lenis`.
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
 npm install
-npm run dev      # http://localhost:5173
+
+# Start the local development server (http://localhost:5173)
+npm run dev
+
+# Build for production
 npm run build
+
+# Run linter
 npm run lint
 ```
 
-## Design system
+## 🎨 Design System
 
-Dark theme, built from the event logo: deep navy `#0D2F54` and circuit cyan
-`#12B5DE`. Everything lives in `src/index.css` under `@theme`, so components
-use token names rather than raw values.
+The visual identity is anchored in a dark theme inspired by the event logo: deep navy `#0D2F54` and circuit cyan `#12B5DE`. The entire design system lives in `src/index.css` under `@theme`. All components use semantic token names instead of raw color hexes.
 
-Token names describe **role, not lightness** — `paper` is whatever the page is
-printed on, `ink` is whatever it is printed with. Here the substrate is
-navy-black and the ink is a cool bone, so `bg-ink text-paper` is the *inverted*
-(bright) treatment used for primary buttons, timeline dots and the like.
+> [!TIP]
+> **Token philosophy:** Token names describe **role, not lightness**. `paper` is the substrate (the page), and `ink` is what is printed on it. Since this is a dark theme by default, `paper` is navy-black and `ink` is a cool bone-white. This semantic approach makes the new Light Mode toggle work seamlessly!
 
-**Surfaces**, darkest first — `void` (footer bookend), `paper` (page),
-`paper-deep` (alternating bands), `card` (raised panels and the hero frame).
+### The Palette
 
-**Marks** — `ink` → `ink-soft` → `ink-mute` → `ink-faint`, in descending
-prominence. All four clear 4:1 against `paper`.
+- **Surfaces (Darkest to lightest):** `void` (footer bookend), `paper` (main page background), `paper-deep` (alternating sections), `card` (raised panels and hero frames).
+- **Marks:** `ink` → `ink-soft` → `ink-mute` → `ink-faint` in descending prominence. All four clear a 4:1 contrast ratio against `paper`.
+- **Lines:** `rule` for structural hairlines, `rule-soft` for secondary dividers. Hairlines define layout boundaries (boxes are rarely used).
+- **Accents:** `flare` (cyan) is the loudest color, reserved exclusively for the most critical focal points. `ember` and `navy` provide gradient support; `moss` indicates positive status.
+  - *Note: Text sitting directly on cyan uses `text-carbon` (black), not white, to maintain accessible contrast.*
 
-**Lines** — `rule` for structural hairlines, `rule-soft` for secondary ones.
-Hairlines carry most of the layout; there are very few boxes.
+### Typography & Assets
+- **Families:** `font-display` uses **Archivo** for all headings, body text, and UI. `font-mono` uses **JetBrains Mono** exclusively for micro-labels: eyebrows, table headers, spec values, and buttons.
+- **Logos:** Production-ready, pre-cropped UI variants live in `src/assets/brand/`. The original source logos (including full-color versions) are safely stored in `src/assets/Event LOGOS/`.
 
-**Accents** — `flare` (cyan) is the only loud colour and is reserved for the
-single most important thing in view. `ember` and `navy` support it in
-gradients; `moss` is for positive status only. Anything sitting *on* cyan uses
-`text-paper`, not white — white on this cyan is only ~2.1:1.
+## 🧩 Component Library
 
-**Families** — `font-display` is Archivo (headings, body, UI). `font-mono` is
-JetBrains Mono, used only for micro-labels: eyebrows, table headers, spec
-values, button text.
-
-**Logos** — `src/assets/brand/` holds the white, pre-cropped variants used in
-the UI (`BrandLogo.jsx` wraps the lockup). Originals, including the colour
-versions, stay untouched in `src/assets/Event LOGOS/`.
-
-### Component classes
-
-| Class | Use |
+| Class | Purpose |
 | --- | --- |
 | `.display` | Uppercase headline setting — tight tracking, 0.92 leading |
-| `.eyebrow` / `.eyebrow-bare` | Mono micro-label, with and without the leading rule |
-| `.frame` / `.panel` | The big rounded canvas, and section-level surfaces |
+| `.eyebrow` / `.eyebrow-bare` | Mono micro-label, with and without the leading decorative rule |
+| `.frame` / `.panel` | The large rounded canvas, and section-level surfaces |
 | `.chip` | Floating glass caption card |
-| `.btn` + `.btn-solid` / `.btn-flare` / `.btn-ghost` / `.btn-invert` | Pill buttons |
-| `.ulink` | Underlined link with a sweep on hover |
-| `.field` / `.field-label` | Underline form inputs |
+| `.btn` | Base pill button. Modifiers: `.btn-solid`, `.btn-flare`, `.btn-ghost`, `.btn-invert` |
+| `.ulink` | Underlined link with a sweep animation on hover |
+| `.field` / `.field-label`| Elegant underlined form inputs |
 
-Utilities: `.grain` (page-wide film grain), `.bleed-warm`, `.paper-grid`,
-`.watermark`, `.tnum` (tabular figures for anything counting).
+**Utilities:** `.grain` (page-wide film grain), `.bleed-warm`, `.paper-grid`, `.watermark`, `.tnum` (tabular figures for counters/numbers).
 
-### Rules of thumb
+## 📐 Layout Rules of Thumb
 
-- Sections alternate `paper` and `paper-deep` to give the page rhythm.
-- Section headers are asymmetric — heading left, supporting text right — never
-  centred stacks.
-- Each section is numbered in its eyebrow (`01 — About` … `10 — Contact`).
-- Illustrations are hand-built inline SVG in the drawing-office style
-  (`RoverSchematic.jsx`, `SmartCityTrack.jsx`). No icon library.
+- Sections alternate between `paper` and `paper-deep` backgrounds to establish vertical rhythm.
+- Section headers are strictly asymmetric (heading on the left, supporting text on the right) — **never** centered stacks.
+- Each section is sequentially numbered in its eyebrow (e.g., `01 — About`, `10 — Contact`).
+- Illustrations are hand-built, inline SVGs designed in a technical "drawing-office" style (see `RoverSchematic.jsx`, `SmartCityTrack.jsx`). **No generic icon libraries are used.**
 
-## Things still open
+## 📋 Open Tasks
 
-- `Contact.jsx` logs the inquiry form to the console; it needs a real backend
-  (EmailJS, Formspree, or a serverless handler).
-- The rulebook PDF link in `Registration.jsx` is a placeholder.
-- Slot counts (40 / 40) are hard-coded in `Registration.jsx`.
+- [ ] **Contact Form:** `Contact.jsx` currently logs inquiries to the console. It needs to be hooked up to a real backend handler (e.g., EmailJS, Formspree, or a serverless function).
+- [x] **Rulebook PDF:** The rulebook PDF is now live and linked across the site!
+- [ ] **Dynamic Registrations:** Slot counts (`40 / 40`) are currently hard-coded.
+
+---
+<div align="center">
+  <sub>Designed for KIC NIBM • Built for Robo-Invent 2026</sub>
+</div>
