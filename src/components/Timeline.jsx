@@ -18,7 +18,7 @@ const phases = [
     time: 'September',
     title: 'Robotics bootcamp',
     desc: 'The mandatory four-day training programme runs at the KIC Campus labs, in rotating cohorts.',
-    note: 'In progress — day 01 done, day 02 on 17 Sep',
+    note: 'In progress — day 02 done, day 03 on 25 Sep',
   },
   {
     phase: '04',

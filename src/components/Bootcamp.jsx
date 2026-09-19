@@ -17,18 +17,18 @@ const days = [
   {
     day: '02',
     date: '17 Sep 2026',
-    status: 'next',
-    title: 'Motors & motion control',
+    status: 'done',
+    title: 'Motors & Speed & Direction',
     topics: [
       'Motor controller fundamentals',
       'Controlling motor speed and direction',
       'Motor control in robotics',
     ],
-    note: '8.00 am onwards',
   },
   {
     day: '03',
-    status: 'tba',
+    date: '25 Sep 2026',
+    status: 'next',
     title: 'To be announced',
   },
   {
@@ -48,6 +48,7 @@ const stateStyles = {
     tag: 'Completed',
     tagClass: 'border-moss/45 text-moss',
     dot: 'bg-moss',
+    hoverText: 'group-hover:text-ink',
   },
   next: {
     border: 'border-flare',
@@ -55,10 +56,12 @@ const stateStyles = {
     tag: 'Up next',
     tagClass: 'border-flare/50 text-flare',
     dot: 'bg-flare',
+    hoverText: 'group-hover:text-flare',
   },
   tba: {
     border: 'border-rule',
     stroke: '1.5px var(--color-ink-faint)',
+    hoverText: '',
   },
 }
 
@@ -99,7 +102,7 @@ export default function Bootcamp() {
           >
             Attendance is mandatory, and it is the reason no experience is needed. Every team
             arrives at the KIC labs knowing nothing and leaves with a robot that drives itself.
-            The first day is already behind us.
+            The first two days are already behind us.
           </motion.p>
         </div>
 
@@ -120,9 +123,7 @@ export default function Bootcamp() {
               >
                 <div className="flex items-baseline justify-between gap-4">
                   <span
-                    className={`font-display font-black text-[86px] lg:text-[104px] leading-[0.75] tracking-[-0.07em] text-transparent transition-colors duration-500 ${
-                      tba ? '' : 'group-hover:text-flare'
-                    }`}
+                    className={`font-display font-black text-[86px] lg:text-[104px] leading-[0.75] tracking-[-0.07em] text-transparent transition-colors duration-500 ${s.hoverText}`}
                     style={{ WebkitTextStroke: s.stroke }}
                   >
                     {day.day}
@@ -144,14 +145,13 @@ export default function Bootcamp() {
                 </div>
 
                 <h3
-                  className={`mt-4 font-display font-semibold text-lg lg:text-xl tracking-[-0.03em] max-w-[16ch] ${
-                    tba ? 'text-ink-faint' : ''
-                  }`}
+                  className={`mt-4 font-display font-semibold text-lg lg:text-xl tracking-[-0.03em] max-w-[16ch] ${tba ? 'text-ink-faint' : ''
+                    }`}
                 >
                   {day.title}
                 </h3>
 
-                {tba ? (
+                {tba || !day.topics ? (
                   <p className="mt-5 text-[13.5px] leading-snug text-ink-faint max-w-[22ch]">
                     Curriculum for this day will be announced closer to the bootcamp.
                   </p>
