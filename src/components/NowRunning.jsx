@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const board = [
   { k: 'Status', v: 'Under way' },
-  { k: 'Next session', v: '17 Sep, 8.00 am' },
+  { k: 'Next session', v: '25 Sep, 8.00 am' },
   { k: 'Entries', v: 'Closed' },
   { k: 'District', v: 'Kandy' },
 ]
@@ -42,8 +42,8 @@ export default function NowRunning() {
               </h2>
 
               <p className="mt-7 max-w-[46ch] text-[15px] sm:text-base leading-relaxed text-carbon/75">
-                Entries have closed and the teams are in the labs. The briefing and the first
-                workshop are done; Workshop 02 takes on motors and motion control on the 17th,
+                Entries have closed and the teams are in the labs. The briefing and the first two
+                workshops are done; Workshop 03 takes place on the 25th,
                 from 8.00 am at the Kandy Innovation Centre.
               </p>
 
@@ -52,9 +52,14 @@ export default function NowRunning() {
                   See the day board
                   <span aria-hidden className="text-base leading-none -mt-px">&#8595;</span>
                 </a>
-                <span className="btn border border-carbon/25 text-carbon/55 cursor-not-allowed select-none">
-                  Rulebook &mdash; PDF soon
-                </span>
+                <a 
+                  href="/KIC-Robo-Invent-Rulebook.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn bg-white text-carbon font-semibold shadow-lg hover:scale-105 transition-transform"
+                >
+                  Download the rulebook
+                </a>
               </div>
             </div>
 
@@ -63,7 +68,7 @@ export default function NowRunning() {
               <div className="border-t border-carbon/25 pt-6">
                 <p className="eyebrow-bare text-carbon/60">Bootcamp days complete</p>
                 <p className="mt-3 flex items-baseline gap-3 font-display font-semibold tnum leading-[0.78] tracking-[-0.06em] text-carbon">
-                  <span className="text-[72px] sm:text-[96px]">01</span>
+                  <span className="text-[72px] sm:text-[96px]">02</span>
                   <span className="text-[24px] sm:text-[30px] text-carbon/50">/ 04</span>
                 </p>
               </div>

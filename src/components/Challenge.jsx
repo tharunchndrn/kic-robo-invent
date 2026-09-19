@@ -109,12 +109,23 @@ export default function Challenge() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ delay: 0.2 }}
-            className="mt-6 lg:mt-7 border-t border-b border-rule py-3.5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6"
+            className="mt-6 lg:mt-7 border-t border-b border-rule py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6"
           >
-            <span className="eyebrow-bare text-flare shrink-0">Rule 01</span>
-            <p className="font-display font-semibold text-[15px] sm:text-base tracking-[-0.02em]">
-              Autonomous navigation only. No remote control, at any point in the run.
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+              <span className="eyebrow-bare text-flare shrink-0">Rule 01</span>
+              <p className="font-display font-semibold text-[15px] sm:text-base tracking-[-0.02em] max-w-[42ch]">
+                Autonomous navigation only. No remote control, at any point in the run.
+              </p>
+            </div>
+
+            <a 
+              href="/KIC-Robo-Invent-Rulebook.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn btn-solid shrink-0 shadow-lg"
+            >
+              Download the rulebook
+            </a>
           </motion.div>
         </div>
       </div>
