@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 /* The recaps were shot 9:16 on the day, so they are framed here as a filmstrip
@@ -27,13 +27,23 @@ const reels = [
     src: '/media/workshop-01.mp4',
     poster: '/media/workshop-01.jpg',
   },
+  {
+    id: 'workshop-02',
+    index: '03',
+    label: 'Workshop 02',
+    date: '17 Sep 2026',
+    runtime: '2:15',
+    blurb: 'Motor controllers, speed and direction — the day the robots move.',
+    src: '/media/workshop-02.mp4',
+    poster: '/media/workshop-02.jpg',
+  }
 ]
 
 const upcoming = {
-  index: '03',
-  label: 'Workshop 02',
-  date: '17 Sep 2026',
-  blurb: 'Motor controllers, speed and direction — the day the robots move.',
+  index: '04',
+  label: 'To be announced',
+  date: '25 Sep 2026',
+  blurb: 'Curriculum for this day will be announced closer to the session.',
 }
 
 function Reel({ reel, i }) {
@@ -84,9 +94,8 @@ function Reel({ reel, i }) {
         />
 
         <div
-          className={`absolute inset-0 transition-opacity duration-500 ${
-            overlayVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
+          className={`absolute inset-0 transition-opacity duration-500 ${overlayVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-void/55 via-transparent to-void/90" />
 
@@ -134,10 +143,45 @@ function Reel({ reel, i }) {
 }
 
 export default function RecapReels() {
+  const filmstripRef = useRef(null)
+  const snapTimeout = useRef(null)
+
+  useEffect(() => {
+    const el = filmstripRef.current
+    if (!el) return
+
+    const onWheel = (e) => {
+      // Ignore if user is swiping horizontally on a trackpad
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return
+
+      const isAtLeft = el.scrollLeft <= 0
+      const isAtRight = Math.ceil(el.scrollLeft + el.clientWidth) >= el.scrollWidth
+
+      if ((isAtLeft && e.deltaY < 0) || (isAtRight && e.deltaY > 0)) {
+        return // At the edge, let the page scroll normally
+      }
+
+      e.preventDefault()
+      e.stopPropagation() // Prevent Lenis from capturing this scroll
+
+      // Disable snapping temporarily while scrolling with wheel
+      el.style.scrollSnapType = 'none'
+      el.scrollBy({ left: e.deltaY, behavior: 'smooth' })
+
+      clearTimeout(snapTimeout.current)
+      snapTimeout.current = setTimeout(() => {
+        el.style.scrollSnapType = ''
+      }, 400)
+    }
+
+    el.addEventListener('wheel', onWheel, { passive: false })
+    return () => el.removeEventListener('wheel', onWheel)
+  }, [])
+
   return (
     <div className="mt-20 lg:mt-28 border-t border-rule pt-10">
       <div className="grid lg:grid-cols-12 gap-x-10 gap-y-10">
-        <div className="lg:col-span-4">
+        <div className="lg:col-span-4 xl:col-span-3">
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -162,15 +206,15 @@ export default function RecapReels() {
             transition={{ delay: 0.14 }}
             className="mt-5 max-w-[36ch] text-[15px] leading-relaxed text-ink-soft"
           >
-            Two sessions down, filmed as they happened. The third frame is still
-            blank &mdash; that one gets shot on the 17th.
+            Three sessions down, filmed as they happened. The fourth frame is still
+            blank &mdash; that one gets shot on the 25th.
           </motion.p>
         </div>
 
-        {/* Scrolls as a strip on narrow screens; all three sit in view on desktop. */}
+        {/* Scrolls as a strip on narrow screens; all four fit in view on large desktop. */}
         <div
-          data-lenis-prevent
-          className="filmstrip lg:col-span-8 flex gap-5 sm:gap-6 overflow-x-auto snap-x -mx-5 px-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0 pb-2"
+          ref={filmstripRef}
+          className="filmstrip lg:col-span-8 xl:col-span-9 flex gap-5 sm:gap-6 overflow-x-auto snap-x -mx-5 px-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0 pb-2"
         >
           {reels.map((reel, i) => (
             <Reel key={reel.id} reel={reel} i={i} />
@@ -191,7 +235,7 @@ export default function RecapReels() {
               </div>
 
               <span className="watermark self-center text-[72px]" aria-hidden>
-                17
+                25
               </span>
 
               <div>
