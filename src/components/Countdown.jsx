@@ -36,7 +36,7 @@ export default function Countdown() {
           <span className="absolute inset-0 rounded-full bg-flare opacity-60 animate-ping" />
           <span className="relative w-2 h-2 rounded-full bg-flare" />
         </span>
-        <span className="eyebrow-bare text-ink-mute">Grand finale in</span>
+        <span className="eyebrow-bare text-ink-mute">Time left</span>
       </span>
 
       <div className="mt-4 flex items-start gap-3 sm:gap-10 lg:gap-16">
@@ -54,10 +54,6 @@ export default function Countdown() {
           </div>
         ))}
       </div>
-
-      <p className="mt-5 font-mono text-[10px] tracking-[0.16em] uppercase text-ink-mute">
-        October 2026 &middot; exact date to be announced
-      </p>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import Countdown from './Countdown'
+import EventDate from './EventDate'
 
 export default function Hero() {
   const scrollTo = (e, href) => {
@@ -30,7 +31,7 @@ export default function Hero() {
         </div>
 
         {/* --- CONTENT --------------------------------------------------- */}
-        <div className="hero-shell relative z-10 flex-1 flex flex-col justify-center lg:justify-start px-5 sm:px-8 lg:px-12 xl:px-16 py-7 sm:py-10 lg:pt-12 lg:pb-6">
+        <div className="hero-shell relative z-10 flex-1 flex flex-col justify-center lg:justify-start px-5 sm:px-8 lg:px-12 xl:px-16 py-7 sm:py-10 lg:pt-10 lg:pb-6">
           {/* Title lockup */}
           <div className="flex flex-col items-center text-center">
             <motion.p {...rise(0.15)} className="eyebrow after:content-[''] after:w-7 after:h-px after:bg-ink-faint">
@@ -46,15 +47,19 @@ export default function Hero() {
               <span className="text-flare">2026</span>
             </motion.h1>
 
+            <motion.div {...rise(0.34)} className="w-full mt-7 sm:mt-8 flex justify-center">
+              <EventDate />
+            </motion.div>
+
             <motion.p
-              {...rise(0.35)}
-              className="mt-6 font-display font-semibold text-[22px] sm:text-[28px] lg:text-[32px] tracking-[-0.035em] leading-[1.15]"
+              {...rise(0.44)}
+              className="mt-9 sm:mt-10 font-display font-semibold text-[22px] sm:text-[28px] lg:text-[32px] tracking-[-0.035em] leading-[1.15]"
             >
               Build a robot that thinks for itself.
             </motion.p>
 
             <motion.p
-              {...rise(0.45)}
+              {...rise(0.52)}
               className="mt-4 max-w-[54ch] text-[15px] sm:text-base leading-relaxed text-ink-soft"
             >
               An inter-school robotics championship for O/L students across the Kandy
@@ -62,7 +67,7 @@ export default function Hero() {
               scale smart city &mdash; no remote controls allowed.
             </motion.p>
 
-            <motion.div {...rise(0.55)} className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <motion.div {...rise(0.6)} className="mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-3">
               <a href="#bootcamp" onClick={(e) => scrollTo(e, '#bootcamp')} className="btn btn-flare">
                 Follow the bootcamp
               </a>
@@ -70,11 +75,10 @@ export default function Hero() {
                 See the challenge
               </a>
             </motion.div>
-
           </div>
 
           {/* --- COUNTDOWN BAND ----------------------------------------- */}
-          <motion.div {...rise(0.75)} className="relative z-10 lg:mt-auto pt-9 sm:pt-11 lg:pt-10">
+          <motion.div {...rise(0.75)} className="relative z-10 lg:mt-auto pt-8 sm:pt-10 lg:pt-7">
             <div className="relative border-t border-rule pt-6 sm:pt-7">
               <Countdown />
 

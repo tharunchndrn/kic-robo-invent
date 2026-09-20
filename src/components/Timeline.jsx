@@ -22,10 +22,9 @@ const phases = [
   },
   {
     phase: '04',
-    time: 'October, week 1',
+    time: 'Friday, 2 October 2026',
     title: 'Grand finale at KIC NIBM',
     desc: 'Time trials, pit lanes, panel evaluation and the award ceremony — all in one day.',
-    note: 'Exact date to be announced',
   },
 ]
 
