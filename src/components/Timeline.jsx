@@ -18,11 +18,11 @@ const phases = [
     time: 'September',
     title: 'Robotics bootcamp',
     desc: 'The mandatory four-day training programme runs at the KIC Campus labs, in rotating cohorts.',
-    note: 'In progress — day 02 done, day 03 on 25 Sep',
+    note: 'In progress — day 02 done, day 03 on 24 Sep',
   },
   {
     phase: '04',
-    time: 'Friday, 2 October 2026',
+    time: 'October, week 1',
     title: 'Grand finale at KIC NIBM',
     desc: 'Time trials, pit lanes, panel evaluation and the award ceremony — all in one day.',
   },

@@ -27,15 +27,29 @@ const days = [
   },
   {
     day: '03',
-    date: '25 Sep 2026',
+    date: '24 Sep 2026',
     status: 'next',
-    title: 'To be announced',
+    title: 'Sensors and motors working together',
+    topics: [
+      'Wiring sensors and motors into one circuit',
+      'Making the robot act on what it senses',
+      'A hands-on mini project',
+    ],
+    note: 'Progress meeting the same morning',
   },
   {
     day: '04',
     status: 'tba',
     title: 'To be announced',
   },
+]
+
+// The progress meeting shares Day 03's morning, but it is a review of what the
+// teams have already built rather than a teaching day — so it sits below the
+// four-day board instead of becoming a fifth column on it.
+const meeting = [
+  'A check on how far your robot has got',
+  'Help fixing whatever is not working yet',
 ]
 
 // Each day's state gets its own rule weight, numeral stroke and tag, so the
@@ -177,6 +191,54 @@ export default function Bootcamp() {
             )
           })}
         </div>
+
+        {/* Progress meeting — same morning as Day 03 */}
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mt-16 lg:mt-20 rounded-panel bg-card border border-rule overflow-hidden"
+        >
+          <span className="absolute inset-y-0 left-0 w-[3px] bg-flare" aria-hidden />
+
+          <div className="grid lg:grid-cols-12 gap-x-10 gap-y-7 px-6 sm:px-9 lg:px-10 py-7 sm:py-9">
+            <div className="lg:col-span-4">
+              <span className="inline-flex items-center gap-2 border border-flare/50 rounded-full pl-2.5 pr-3 py-1 eyebrow-bare text-flare">
+                <span className="w-1.5 h-1.5 rounded-full bg-flare" />
+                Same morning as Day 03
+              </span>
+
+              <h3 className="mt-5 font-display font-semibold text-xl lg:text-2xl tracking-[-0.03em] max-w-[16ch]">
+                Team progress meeting
+              </h3>
+
+              <p className="mt-3 eyebrow-bare tnum text-ink-mute">24 Sep 2026 &middot; 8.00 am</p>
+            </div>
+
+            <div className="lg:col-span-7 lg:col-start-6">
+              <p className="max-w-[56ch] text-[14.5px] sm:text-[15px] leading-relaxed text-ink-soft">
+                The technical team sits down with each team to look at the robot you have built so
+                far. Bring it in whatever state it is in &mdash; half-built and not yet working is
+                exactly what this session is for.
+              </p>
+
+              <ul className="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
+                {meeting.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-[13.5px] leading-snug text-ink-soft"
+                  >
+                    <span className="mt-[7px] w-2.5 h-px bg-ink-faint shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="mt-6 eyebrow-bare text-ink-mute">Every competing student must attend</p>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Logistics */}
         <motion.div

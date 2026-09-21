@@ -41,9 +41,9 @@ const reels = [
 
 const upcoming = {
   index: '04',
-  label: 'To be announced',
-  date: '25 Sep 2026',
-  blurb: 'Curriculum for this day will be announced closer to the session.',
+  label: 'Workshop 03',
+  date: '24 Sep 2026',
+  blurb: 'Sensors and motors joined into one working build — filmed on the day.',
 }
 
 function Reel({ reel, i }) {
@@ -207,7 +207,7 @@ export default function RecapReels() {
             className="mt-5 max-w-[36ch] text-[15px] leading-relaxed text-ink-soft"
           >
             Three sessions down, filmed as they happened. The fourth frame is still
-            blank &mdash; that one gets shot on the 25th.
+            blank &mdash; that one gets shot on the 24th.
           </motion.p>
         </div>
 
@@ -235,7 +235,7 @@ export default function RecapReels() {
               </div>
 
               <span className="watermark self-center text-[72px]" aria-hidden>
-                25
+                24
               </span>
 
               <div>

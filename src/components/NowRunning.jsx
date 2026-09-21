@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 
 const board = [
   { k: 'Status', v: 'Under way' },
-  { k: 'Next session', v: '25 Sep, 8.00 am' },
+  { k: 'Next session', v: '24 Sep, 8.00 am' },
   { k: 'Entries', v: 'Closed' },
   { k: 'District', v: 'Kandy' },
 ]
@@ -43,8 +43,10 @@ export default function NowRunning() {
 
               <p className="mt-7 max-w-[46ch] text-[15px] sm:text-base leading-relaxed text-carbon/75">
                 Entries have closed and the teams are in the labs. The briefing and the first two
-                workshops are done; Workshop 03 takes place on the 25th,
-                from 8.00 am at the Kandy Innovation Centre.
+                workshops are done; Workshop 03 takes place on Thursday the 24th,
+                from 8.00 am at the Kandy Innovation Centre. The same morning the technical
+                team goes through every robot built so far, and all competing students need
+                to be there.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-3">

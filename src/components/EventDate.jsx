@@ -3,7 +3,7 @@
    centre axis so the lockup stays symmetrical. */
 function Rule({ tick }) {
   return (
-    <span className="relative flex-1 h-px bg-rule" aria-hidden>
+    <span className="relative flex-1 min-w-[20px] h-px bg-rule" aria-hidden>
       <span
         className={`absolute top-1/2 -translate-y-1/2 w-px h-2.5 bg-rule ${tick === 'left' ? 'left-0' : 'right-0'}`}
       />
@@ -18,9 +18,12 @@ export default function EventDate() {
       <div className="w-full flex items-center gap-3 sm:gap-6">
       <Rule tick="left" />
 
-      <div className="relative flex shrink-0 items-center rounded-2xl border border-flare/25 bg-flare/[0.05] px-5 sm:px-8 py-3.5 sm:py-4">
-        <time dateTime="2026-10-02" className="flex items-baseline gap-x-1.5 sm:gap-x-3 font-display font-extrabold uppercase tnum text-ink text-[20px] sm:text-[30px] lg:text-[35px] leading-none tracking-[-0.02em] whitespace-nowrap">
-          <span>02</span>{' '}<span className="text-flare">October</span>{' '}<span>2026</span>
+      <div className="relative flex min-w-0 items-center rounded-2xl border border-flare/25 bg-flare/[0.05] px-5 sm:px-8 py-3.5 sm:py-4">
+        {/* No exact day is published yet, so the callout carries the week and the
+            machine-readable value narrows only to the month. Allowed to wrap: on a
+            narrow screen this breaks to two lines rather than shrinking the type. */}
+        <time dateTime="2026-10" className="flex flex-wrap justify-center items-baseline gap-x-1.5 sm:gap-x-3 gap-y-1 font-display font-extrabold uppercase tnum text-ink text-[22px] sm:text-[28px] lg:text-[34px] leading-[1.05] tracking-[-0.02em] text-center">
+          <span>First week of</span>{' '}<span className="text-flare">October</span>{' '}<span>2026</span>
         </time>
       </div>
 
