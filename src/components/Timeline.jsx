@@ -17,12 +17,12 @@ const phases = [
     phase: '03',
     time: 'September',
     title: 'Robotics bootcamp',
-    desc: 'The mandatory four-day training programme runs at the KIC Campus labs, in rotating cohorts.',
-    note: 'In progress — day 02 done, day 03 on 24 Sep',
+    desc: 'The mandatory three-day training programme ran at the KIC Campus labs, in rotating cohorts.',
+    note: 'Complete — straight to the finale',
   },
   {
     phase: '04',
-    time: 'October, week 1',
+    time: '2 October',
     title: 'Grand finale at KIC NIBM',
     desc: 'Time trials, pit lanes, panel evaluation and the award ceremony — all in one day.',
   },
@@ -62,8 +62,8 @@ export default function Timeline() {
                   transition={{ delay: 0.16 }}
                   className="mt-7 max-w-[34ch] text-[15px] leading-relaxed text-ink-soft"
                 >
-                  Four phases from June to October. Entries opened in June and closed in
-                  September; the bootcamp and the finale are what remain.
+                  Four phases from June to October. Entries opened in June, the bootcamp is
+                  done, and the finale is what remains.
                 </motion.p>
               </div>
             </div>

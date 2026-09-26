@@ -63,7 +63,7 @@ export default function Hero() {
               className="mt-4 max-w-[54ch] text-[15px] sm:text-base leading-relaxed text-ink-soft"
             >
               An inter-school robotics championship for O/L students across the Kandy
-              District. Four days of Arduino training, then one autonomous run through a
+              District. Three days of Arduino training, then one autonomous run through a
               scale smart city &mdash; no remote controls allowed.
             </motion.p>
 

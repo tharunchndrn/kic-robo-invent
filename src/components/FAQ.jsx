@@ -12,11 +12,11 @@ const faqs = [
   },
   {
     q: 'Is the robotics bootcamp mandatory?',
-    a: 'Yes. The four-day bootcamp is mandatory for every participating team and runs at the KIC NIBM Campus labs in September 2026.',
+    a: 'Yes. The three-day bootcamp was mandatory for every participating team and ran at the KIC NIBM Campus labs in September 2026. There is no fourth workshop — the finale follows directly.',
   },
   {
     q: 'What will students learn at the bootcamp?',
-    a: 'Day one covers electronics fundamentals and Arduino fundamentals, starting from absolute basics. The curriculum for the remaining days will be announced closer to the bootcamp.',
+    a: 'Day one covered electronics and Arduino fundamentals from absolute basics, day two moved into motor control, and day three brought sensors and motors together into one working build.',
   },
   {
     q: 'What exactly is the main challenge?',

@@ -3,8 +3,7 @@ import { motion } from 'framer-motion'
 
 /* The recaps were shot 9:16 on the day, so they are framed here as a filmstrip
    rather than a widescreen player — same aspect they were filmed in, no
-   letterboxing. The trailing card is deliberately empty: the strip reads as a
-   roll still being exposed, not a finished archive. */
+   letterboxing. */
 
 const reels = [
   {
@@ -36,15 +35,18 @@ const reels = [
     blurb: 'Motor controllers, speed and direction — the day the robots move.',
     src: '/media/workshop-02.mp4',
     poster: '/media/workshop-02.jpg',
+  },
+  {
+    id: 'workshop-03',
+    index: '04',
+    label: 'Workshop 03',
+    date: '24 Sep 2026',
+    runtime: '0:33',
+    blurb: 'Sensors and motors joined into one working build — the final training day.',
+    src: '/media/workshop-03.mp4',
+    poster: '/media/workshop-03.jpg',
   }
 ]
-
-const upcoming = {
-  index: '04',
-  label: 'Workshop 03',
-  date: '24 Sep 2026',
-  blurb: 'Sensors and motors joined into one working build — filmed on the day.',
-}
 
 function Reel({ reel, i }) {
   const videoRef = useRef(null)
@@ -206,8 +208,8 @@ export default function RecapReels() {
             transition={{ delay: 0.14 }}
             className="mt-5 max-w-[36ch] text-[15px] leading-relaxed text-ink-soft"
           >
-            Three sessions down, filmed as they happened. The fourth frame is still
-            blank &mdash; that one gets shot on the 24th.
+            All four sessions down, filmed as they happened. The bootcamp is
+            complete &mdash; next stop is the finale.
           </motion.p>
         </div>
 
@@ -219,37 +221,6 @@ export default function RecapReels() {
           {reels.map((reel, i) => (
             <Reel key={reel.id} reel={reel} i={i} />
           ))}
-
-          {/* The unexposed frame. */}
-          <motion.article
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative shrink-0 snap-start w-[248px] sm:w-[288px] lg:w-[312px]"
-          >
-            <div className="aspect-[9/16] rounded-panel border border-dashed border-rule paper-grid-fine flex flex-col justify-between p-4">
-              <div className="flex items-center justify-between">
-                <span className="eyebrow-bare text-ink-faint">Reel {upcoming.index}</span>
-                <span className="eyebrow-bare text-ink-faint">Unshot</span>
-              </div>
-
-              <span className="watermark self-center text-[72px]" aria-hidden>
-                24
-              </span>
-
-              <div>
-                <p className="eyebrow-bare text-ink-faint">{upcoming.date}</p>
-                <h4 className="mt-2 font-display font-semibold text-lg tracking-[-0.03em] text-ink-faint">
-                  {upcoming.label}
-                </h4>
-              </div>
-            </div>
-
-            <p className="mt-4 text-[13.5px] leading-snug text-ink-faint max-w-[30ch]">
-              {upcoming.blurb}
-            </p>
-          </motion.article>
         </div>
       </div>
     </div>

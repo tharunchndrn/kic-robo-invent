@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
 
 /* This panel used to be the registration CTA. Entries have closed, so it now
-   carries the live story instead — where the bootcamp has got to, and what the
-   next session is. Deliberately holds no headcount: capacity is known, how many
+   carries the live story instead — that the bootcamp finished and the finale
+   is next. Deliberately holds no headcount: capacity is known, how many
    schools actually came through the form is not. */
 
 const board = [
-  { k: 'Status', v: 'Under way' },
-  { k: 'Next session', v: '24 Sep, 8.00 am' },
+  { k: 'Status', v: 'Bootcamp complete' },
+  { k: 'Next up', v: 'Grand finale' },
   { k: 'Entries', v: 'Closed' },
   { k: 'District', v: 'Kandy' },
 ]
@@ -38,15 +38,13 @@ export default function NowRunning() {
               <p className="eyebrow before:bg-carbon/40 text-carbon/70">08 &mdash; Now running</p>
 
               <h2 className="display mt-6 text-[12vw] sm:text-[9vw] lg:text-[5vw] max-w-[11ch] text-carbon">
-                The bootcamp is under way
+                The bootcamp is complete
               </h2>
 
               <p className="mt-7 max-w-[46ch] text-[15px] sm:text-base leading-relaxed text-carbon/75">
-                Entries have closed and the teams are in the labs. The briefing and the first two
-                workshops are done; Workshop 03 takes place on Thursday the 24th,
-                from 8.00 am at the Kandy Innovation Centre. The same morning the technical
-                team goes through every robot built so far, and all competing students need
-                to be there.
+                Entries have closed and all three workshops are done. Every team has left the
+                labs with a robot that drives itself &mdash; there is no fourth workshop. Next
+                stop is the grand finale at the Kandy Innovation Centre on 2 October.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center gap-3">

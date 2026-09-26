@@ -19,11 +19,10 @@ export default function EventDate() {
       <Rule tick="left" />
 
       <div className="relative flex min-w-0 items-center rounded-2xl border border-flare/25 bg-flare/[0.05] px-5 sm:px-8 py-3.5 sm:py-4">
-        {/* No exact day is published yet, so the callout carries the week and the
-            machine-readable value narrows only to the month. Allowed to wrap: on a
-            narrow screen this breaks to two lines rather than shrinking the type. */}
-        <time dateTime="2026-10" className="flex flex-wrap justify-center items-baseline gap-x-1.5 sm:gap-x-3 gap-y-1 font-display font-extrabold uppercase tnum text-ink text-[22px] sm:text-[28px] lg:text-[34px] leading-[1.05] tracking-[-0.02em] text-center">
-          <span>First week of</span>{' '}<span className="text-flare">October</span>{' '}<span>2026</span>
+        {/* Allowed to wrap: on a narrow screen this breaks to two lines rather
+            than shrinking the type. */}
+        <time dateTime="2026-10-02" className="flex flex-wrap justify-center items-baseline gap-x-1.5 sm:gap-x-3 gap-y-1 font-display font-extrabold uppercase tnum text-ink text-[22px] sm:text-[28px] lg:text-[34px] leading-[1.05] tracking-[-0.02em] text-center">
+          <span>2nd</span>{' '}<span className="text-flare">October</span>{' '}<span>2026</span>
         </time>
       </div>
 
