@@ -3,23 +3,23 @@ import { motion } from 'framer-motion'
 /* Ordered by weight — the chart should say what matters most, first. */
 const criteria = [
   {
+    title: 'Task execution speed',
+    weight: 70,
+    desc: 'Total time on course, with penalties for line breaks and missed signals.',
+  },
+  {
     title: 'Structural & strategic innovation',
-    weight: 35,
+    weight: 15,
     desc: 'Chassis design, sensor placement, and the reasoning behind the route strategy.',
   },
   {
     title: 'Code cleanliness & logic',
-    weight: 30,
+    weight: 10,
     desc: 'Readable, structured control loops that a judge can follow line by line.',
   },
   {
-    title: 'Task execution speed',
-    weight: 20,
-    desc: 'Total time on course, with penalties for line breaks and missed signals.',
-  },
-  {
     title: 'Team presentation',
-    weight: 15,
+    weight: 5,
     desc: 'How clearly the team explains what they built and why they built it that way.',
   },
 ]
@@ -56,8 +56,8 @@ export default function Judging() {
             transition={{ delay: 0.16 }}
             className="lg:col-span-5 lg:col-start-8 max-w-[44ch] lg:pb-3 text-[15px] sm:text-base leading-relaxed text-ink-soft"
           >
-            Speed is worth a fifth of the score. The other four fifths go to how the robot was
-            thought through &mdash; which is the point of the whole exercise.
+            Speed carries most of the score. The rest goes to how the robot was thought
+            through &mdash; its design, its code, and how well the team can explain it.
           </motion.p>
         </div>
 
