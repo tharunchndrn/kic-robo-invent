@@ -1,0 +1,28 @@
+{
+  "rules": {
+    // Everything is closed unless opened below. The passcode lives at
+    // /secrets/<event>, which no client can read; only the Firebase CLI
+    // (an admin) can set it.
+    "events": {
+      "$event": {
+        // Displays and anyone else can watch the arenas, no sign-in needed.
+        "arenas": {
+          ".read": true,
+          "$arena": {
+            // A write to an arena only goes through if the same update also
+            // writes keys/<arena> with the right passcode, stamped with the
+            // server's current time. The stamp means a key left behind by an
+            // earlier write can't be reused — every write must carry it.
+            ".write": "$arena.matches(/^[AB]$/) && newData.parent().parent().child('keys/' + $arena + '/t').val() === now && newData.parent().parent().child('keys/' + $arena + '/k').val() === root.child('secrets/' + $event).val()"
+          }
+        },
+        // Write-only: carries the passcode alongside every arena write.
+        "keys": {
+          "$arena": {
+            ".write": "$arena.matches(/^[AB]$/) && newData.child('k').val() === root.child('secrets/' + $event).val() && newData.child('t').val() === now"
+          }
+        }
+      }
+    }
+  }
+}

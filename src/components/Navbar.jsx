@@ -12,6 +12,8 @@ const navLinks = [
   { name: 'Scoring', href: '#judging' },
   { name: 'FAQ', href: '#faq' },
   { name: 'Contact', href: '#contact' },
+  // A separate page, not a section — the click handler lets it navigate.
+  { name: 'Stopwatch', href: '/stopwatch/' },
 ]
 
 export default function Navbar() {
@@ -59,8 +61,9 @@ export default function Navbar() {
   }, [])
 
   const handleLinkClick = (e, href) => {
-    e.preventDefault()
     setMobileOpen(false)
+    if (!href.startsWith('#')) return
+    e.preventDefault()
     const el = document.querySelector(href)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
